@@ -46,21 +46,22 @@ public class CheckersBoard {
 
     public final MovesList getRealMoves(int row, int col) {
         CheckersPiece myPiece = getPiece(row, col);
-        MovesList availableMoves = getMoves(row, col, myPiece.getPlayer1());
+        MovesList availableMoves = getMoves(row, col, myPiece.getIsPlayer1());
         MovesList realMoves = new MovesList();
         for (Coordinate coordinate : availableMoves) {
             CheckersPiece piece = getPiece(coordinate);
             if (piece == null) {
                 realMoves.add(coordinate);
-            } else if (myPiece.getPlayer1() != piece.getPlayer1()) {
-                checkForJumps(row + (coordinate.row - row) * 2, col + (coordinate.col - col) * 2, myPiece.getPlayer1());
+            } else if (myPiece.getIsPlayer1() != piece.getIsPlayer1()) {
+                checkForJumps(row + (coordinate.row - row) * 2, col + (coordinate.col - col) * 2, myPiece.getIsPlayer1())
+                        .forEach(item -> realMoves.add(item));
             }
         }
         return realMoves;
     }
 
     private final ArrayList<Coordinate> checkForJumps(int row, int col, boolean player1) {
-        return null;
+        return new ArrayList<>();
     }
 
     public final CheckersPiece getPiece(int row, int col) {

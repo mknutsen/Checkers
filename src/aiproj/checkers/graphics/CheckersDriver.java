@@ -3,7 +3,7 @@ package aiproj.checkers.graphics;
 import mknutsen.graphicslibrary.GraphicsDriver;
 
 /**
- * Created by mknutsen on 10/21/15.
+ * creates a graphics driver that runs the game component.
  */
 public class CheckersDriver {
 

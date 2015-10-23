@@ -11,12 +11,15 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 /**
- * Created by mknutsen on 10/21/15.
+ * game component handles interfacing the board and the players as well as displaying the graphics
  */
 public class GameComponent extends GraphicsComponent implements MouseListener {
 
     public static BufferedImage background;
 
+    /**
+     * Handles loading the background image
+     */
     static {
         try {
             background = ImageIO.read(CheckersPiece.class.getResourceAsStream("resource/background.png"));
@@ -25,11 +28,15 @@ public class GameComponent extends GraphicsComponent implements MouseListener {
         }
     }
 
-    CheckersBoard board;
+    private CheckersBoard board;
 
+    /**
+     * Default constructor initializes the board and the players and the mouse listener.
+     */
     public GameComponent() {
         board = new CheckersBoard();
         board.newGame();
+        addMouseListener(this);
     }
 
     @Override

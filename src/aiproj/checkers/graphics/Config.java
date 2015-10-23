@@ -3,7 +3,7 @@ package aiproj.checkers.graphics;
 import java.awt.image.BufferedImage;
 
 /**
- * Created by mknutsen on 10/21/15.
+ * Created to have a unified place for modifying constants that affect how the game is played.
  */
 public final class Config {
 
@@ -13,7 +13,7 @@ public final class Config {
 
     public static final int ROW_HEIGHT = 94, COLUMN_WIDTH = 94;
 
-    public static final int X_OFFSET = 45, Y_OFFSET = 45;
+    public static final int X_OFFSET = 45, Y_OFFSET = 45; // x y offset in each cell
 
     public static final int WINDOW_WIDTH = 750, WINDOW_HEIGHT = 750;
 
