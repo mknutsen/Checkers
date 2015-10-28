@@ -31,6 +31,8 @@ public class CheckersPiece extends CircleGraphicObject {
 
     private int col;
 
+    private int hoverX = -1, hoverY = -1;
+
     /**
      * @param row
      *         row the checkers piece belongs in
@@ -40,18 +42,32 @@ public class CheckersPiece extends CircleGraphicObject {
      *         does the piece belong to player 1
      */
     public CheckersPiece(int row, int col, boolean player1) {
-        super(Config.COLUMN_WIDTH * row, Config.ROW_HEIGHT * col, Config.PIECE_WIDTH / 2, false,
-                player1 ? Config.pieces[0] : Config.pieces[1]);
+        super(Config.COLUMN_WIDTH * row + Config.X_OFFSET, Config.ROW_HEIGHT * col + Config.Y_OFFSET,
+                Config.PIECE_WIDTH / 2, false, player1 ? Config.pieces[0] : Config.pieces[1]);
         this.row = row;
         this.col = col;
         this.player1 = player1;
     }
 
+    public static void main(String[] args) {
+        CheckersPiece piece = new CheckersPiece(11, 1, true);
+        CheckersPiece piece2 = new CheckersPiece(11, 1, true);
+        System.out.println(piece.equals(piece2));
+    }
+
     @Override
     public final boolean draw(final Graphics gr) {
-        gr.drawImage(getImage(), getX() - getRadius() + Config.X_OFFSET, getY() - getRadius() + Config.Y_OFFSET,
-                getRadius() * 2, getRadius() * 2, null);
+        int x = hoverX >= 0 && hoverY >= 0 ? hoverX : getX();
+        int y = hoverX >= 0 && hoverY >= 0 ? hoverY : getY();
+
+        gr.drawImage(getImage(), x - getRadius(), y - getRadius(), getRadius() * 2, getRadius() * 2, null);
+
         return true;
+    }
+
+    public final void setHover(int x, int y) {
+        this.hoverX = x;
+        this.hoverY = y;
     }
 
     /**
@@ -67,6 +83,7 @@ public class CheckersPiece extends CircleGraphicObject {
      */
     public final void setRow(int row) {
         this.row = row;
+        setX(Config.COLUMN_WIDTH * row + Config.X_OFFSET);
     }
 
     /**
@@ -82,6 +99,7 @@ public class CheckersPiece extends CircleGraphicObject {
      */
     public final void setCol(int col) {
         this.col = col;
+        setY(Config.ROW_HEIGHT * col + Config.Y_OFFSET);
     }
 
     /**
@@ -89,5 +107,28 @@ public class CheckersPiece extends CircleGraphicObject {
      */
     public final boolean getIsPlayer1() {
         return player1;
+    }
+
+    @Override
+    public int hashCode() {
+        return row + col * 10 + (player1 ? 100 : 0);
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (obj instanceof CheckersPiece) {
+            this.toString().equals(obj.toString());
+        }
+        return false;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return new CheckersPiece(row, col, player1);
+    }
+
+    @Override
+    public String toString() {
+        return (player1 ? "Red " : "Blue ") + "at " + row + ", " + col;
     }
 }
