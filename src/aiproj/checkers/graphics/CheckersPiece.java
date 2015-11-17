@@ -99,7 +99,9 @@ public class CheckersPiece extends CircleGraphicObject {
      */
     public final void setCol(int col) {
         this.col = col;
+        System.out.println("old col! " + getY());
         setY(Config.ROW_HEIGHT * col + Config.Y_OFFSET);
+        System.out.println("new col! " + getY());
     }
 
     /**
@@ -117,18 +119,26 @@ public class CheckersPiece extends CircleGraphicObject {
     @Override
     public boolean equals(final Object obj) {
         if (obj instanceof CheckersPiece) {
-            this.toString().equals(obj.toString());
+            System.out.println(obj.toString() + " vs. " + toString());
+            return this.toString().equals(obj.toString());
         }
         return false;
     }
 
     @Override
-    protected Object clone() throws CloneNotSupportedException {
+    public Object clone() {
         return new CheckersPiece(row, col, player1);
     }
 
     @Override
     public String toString() {
-        return (player1 ? "Red " : "Blue ") + "at " + row + ", " + col;
+        return (player1 ? "Red " : "Black ") + "at " + row + ", " + col;
+    }
+
+    public String getDrawLocation() {
+
+        int x = hoverX >= 0 && hoverY >= 0 ? hoverX : getX();
+        int y = hoverX >= 0 && hoverY >= 0 ? hoverY : getY();
+        return x + ", " + y;
     }
 }

@@ -1,23 +1,21 @@
 package aiproj.checkers.graphics;
 
 import aiproj.checkers.game.CheckersBoard;
+import aiproj.checkers.game.player.Player;
 import mknutsen.graphicslibrary.GraphicsComponent;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.event.MouseEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.Hashtable;
 
 /**
  * game component handles interfacing the board and the players as well as displaying the graphics
  */
-public class GameComponent extends GraphicsComponent implements MouseListener, MouseMotionListener {
+public class GameComponent extends GraphicsComponent {
 
     private static BufferedImage background;
 
@@ -32,24 +30,96 @@ public class GameComponent extends GraphicsComponent implements MouseListener, M
         }
     }
 
-    private CheckersPiece hover = null;
+    int i = 0;
 
     private CheckersBoard board;
 
     /**
      * Default constructor initializes the board and the players and the mouse listener.
      */
-    public GameComponent() {
+    public GameComponent(Player player1, Player player2) {
+        //instantiate the game
         board = new CheckersBoard();
         board.newGame();
-        addMouseListener(this);
-        addMouseMotionListener(this);
+
+        //give it to the players
+        player1.setGame(board, true);
+        player2.setGame(board, false);
+
+        //give the players the ability to call repaint
+        RepaintCallback callback = new RepaintCallback() {
+
+            @Override
+            public void repaint() {
+                //                repaint();
+            }
+        };
+        player1.setRepaintCallback(callback);
+        player2.setRepaintCallback(callback);
+
+        //set up switching turns
+        board.setCallback(new TurnCallback() {
+
+            @Override
+            public void nextTurn(final boolean isPlayer1Turn) {
+                CheckersBoard.Move move;
+                System.out.println(board);
+                if (isPlayer1Turn) {
+                    move = player1.triggerTurn();
+                } else {
+                    move = player2.triggerTurn();
+                }
+                // if the thing is a computer itll spit out a move to make, make the move
+                if (move != null) {
+                    System.out.println("making this move: " + move);
+                    board.makeMove(board.getPiece(move.getPiece().getRow(), move.getPiece().getCol()),
+                            move.getEndCell());
+                }
+            }
+        });
+        //add the appropriate listeners to player1
+        if (player1 instanceof MouseListener) {
+            addMouseListener((MouseListener) player1);
+        }
+        if (player1 instanceof MouseMotionListener) {
+            addMouseMotionListener((MouseMotionListener) player1);
+        }
+        if (player1 instanceof KeyListener) {
+            addKeyListener((KeyListener) player1);
+        }
+
+        //add the appropriate listeners to player2
+        if (player2 instanceof MouseListener) {
+            addMouseListener((MouseListener) player2);
+        }
+        if (player2 instanceof MouseMotionListener) {
+            addMouseMotionListener((MouseMotionListener) player2);
+        }
+        if (player2 instanceof KeyListener) {
+            addKeyListener((KeyListener) player2);
+        }
     }
 
     @Override
     public void paint(final Graphics g) {
+        //        g.setColor(new Color((int) (Math.random() * 255), (int) (Math.random() * 255), (int) (Math.random()
+        // * 255)));
+        //        g.fillRect(0, 0, Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT);
         g.drawImage(background, 0, 0, Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT, null);
         board.draw(g);
+        //        System.out.println(board);
+        int win = board.checkWin();
+
+        if (win != 0) {
+            triggerCallback(win);
+        }
+
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        repaint();
     }
 
     @Override
@@ -57,82 +127,17 @@ public class GameComponent extends GraphicsComponent implements MouseListener, M
 
     }
 
-    @Override
-    public void mouseClicked(final MouseEvent e) {
+    public static abstract class TurnCallback {
+
+        /**
+         * @param isPlayer1Turn
+         *         whos turn is it now
+         */
+        public abstract void nextTurn(boolean isPlayer1Turn);
     }
 
-    @Override
-    public void mousePressed(final MouseEvent e) {
-        hover = board.getPiece(e);
-        repaint();
-    }
+    public static abstract class RepaintCallback {
 
-    @Override
-    public void mouseReleased(final MouseEvent e) {
-        if (hover != null) {
-            board.makeMove(hover, CheckersBoard.getCell(e));
-            hover.setHover(-1, -1);
-            hover = null;
-            int win = board.checkWin();
-            if (win != 0) {
-                triggerCallback(win);
-            } else {
-                final Hashtable<String, ArrayList<CheckersBoard.Coordinate>> coordinateTable = new Hashtable<>();
-                for (CheckersPiece piece : board.getPlayer2Pieces()) {
-                    ArrayList<CheckersBoard.Coordinate> coordinate = new ArrayList<>();
-                    board.getRealMoves(piece, CheckersBoard.getMoves(piece.getRow(), piece.getCol()))
-                            .forEach(item -> coordinate.add(item));
-                    Enumeration<CheckersBoard.Coordinate> list =
-                            board.getJumpLocations(piece, CheckersBoard.getMoves(piece.getRow(), piece.getCol()))
-                                    .keys();
-                    while (list.hasMoreElements()) {
-                        coordinate.add(list.nextElement());
-                    }
-                    if (coordinate.size() > 0) {
-                        coordinateTable.put(piece.toString(), coordinate);
-                    }
-                }
-                int i = 0;
-                int keyNum = (int) (Math.random() * coordinateTable.keySet().size());
-                for (String pieceString : coordinateTable.keySet()) {
-                    int commaIndex = pieceString.indexOf(',');
-                    CheckersPiece piece =
-                            new CheckersPiece(Integer.parseInt(pieceString.substring(commaIndex - 1, commaIndex)),
-                                    Integer.parseInt(pieceString.substring(commaIndex + 2, commaIndex + 3)),
-                                    "red".equals(pieceString.substring(0, 3)));
-                    if (i++ == keyNum) {
-                        ArrayList<CheckersBoard.Coordinate> list = coordinateTable.get(piece.toString());
-                        board.makeMove(piece, list.get((int) (list.size() * Math.random())));
-                        win = board.checkWin();
-                        if (win != 0) {
-                            triggerCallback(win);
-                        }
-                    }
-                }
-            }
-            repaint();
-        }
-    }
-
-    @Override
-    public void mouseEntered(final MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(final MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseDragged(final MouseEvent e) {
-        if (hover != null) {
-            hover.setHover(e.getX(), e.getY());
-            repaint();
-        }
-    }
-
-    @Override
-    public void mouseMoved(final MouseEvent e) {
+        public abstract void repaint();
     }
 }
