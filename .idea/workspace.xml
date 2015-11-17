@@ -2,76 +2,73 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00d2b8c2-e378-48fe-82c1-ac25998cf90e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mknutsen/graphicslibrary/graphicsobject/Button.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aiproj/checkers/game/CheckersBoard.Coordinate.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aiproj/checkers/game/CheckersBoard.Move.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aiproj/checkers/game/CheckersBoard.MovesList.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aiproj/checkers/game/CheckersBoard.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aiproj/checkers/graphics/CheckersDriver.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aiproj/checkers/graphics/CheckersPiece.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mknutsen/graphicslibrary/graphicsobject/CircleGraphicObject.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mknutsen/graphicslibrary/CompletionCallback.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aiproj/checkers/graphics/Config.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mknutsen/graphicslibrary/Config.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aiproj/checkers/graphics/EndScreen.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aiproj/checkers/graphics/GameComponent.RepaintCallback.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aiproj/checkers/graphics/GameComponent.TurnCallback.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aiproj/checkers/graphics/GameComponent.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mknutsen/graphicslibrary/graphicsobject/GraphicObject.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mknutsen/graphicslibrary/GraphicWidget.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mknutsen/graphicslibrary/GraphicsComponent.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mknutsen/graphicslibrary/GraphicsDriver.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aiproj/checkers/game/player/MousePlayer.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aiproj/checkers/game/player/Player.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aiproj/checkers/game/player/RandomPlayer.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mknutsen/graphicslibrary/graphicsobject/RectangleGraphicObject.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allclasses-frame.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/allclasses-noframe.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/constant-values.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/deprecated-list.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/help-doc.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/index-files/index-1.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/index-files/index-10.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/index-files/index-11.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/index-files/index-12.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/index-files/index-13.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/index-files/index-14.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/index-files/index-15.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/index-files/index-16.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/index-files/index-17.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/index-files/index-18.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/index-files/index-19.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/index-files/index-2.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/index-files/index-3.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/index-files/index-4.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/index-files/index-5.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/index-files/index-6.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/index-files/index-7.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/index-files/index-8.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/index-files/index-9.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/overview-frame.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/overview-summary.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/overview-tree.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aiproj/checkers/game/package-frame.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aiproj/checkers/game/player/package-frame.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aiproj/checkers/graphics/package-frame.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mknutsen/graphicslibrary/package-frame.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mknutsen/graphicslibrary/graphicsobject/package-frame.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/package-list" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aiproj/checkers/game/package-summary.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aiproj/checkers/game/player/package-summary.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aiproj/checkers/graphics/package-summary.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mknutsen/graphicslibrary/package-summary.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mknutsen/graphicslibrary/graphicsobject/package-summary.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aiproj/checkers/game/package-tree.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aiproj/checkers/game/player/package-tree.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aiproj/checkers/graphics/package-tree.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mknutsen/graphicslibrary/package-tree.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mknutsen/graphicslibrary/graphicsobject/package-tree.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/script.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/serialized-form.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/stylesheet.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mknutsen/graphicslibrary/graphicsobject/Button.html" afterPath="$PROJECT_DIR$/mknutsen/graphicslibrary/graphicsobject/Button.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aiproj/checkers/game/CheckersBoard.Coordinate.html" afterPath="$PROJECT_DIR$/aiproj/checkers/game/CheckersBoard.Coordinate.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aiproj/checkers/game/CheckersBoard.Move.html" afterPath="$PROJECT_DIR$/aiproj/checkers/game/CheckersBoard.Move.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aiproj/checkers/game/CheckersBoard.MovesList.html" afterPath="$PROJECT_DIR$/aiproj/checkers/game/CheckersBoard.MovesList.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aiproj/checkers/game/CheckersBoard.html" afterPath="$PROJECT_DIR$/aiproj/checkers/game/CheckersBoard.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aiproj/checkers/graphics/CheckersDriver.html" afterPath="$PROJECT_DIR$/aiproj/checkers/graphics/CheckersDriver.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aiproj/checkers/graphics/CheckersPiece.html" afterPath="$PROJECT_DIR$/aiproj/checkers/graphics/CheckersPiece.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mknutsen/graphicslibrary/graphicsobject/CircleGraphicObject.html" afterPath="$PROJECT_DIR$/mknutsen/graphicslibrary/graphicsobject/CircleGraphicObject.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mknutsen/graphicslibrary/CompletionCallback.html" afterPath="$PROJECT_DIR$/mknutsen/graphicslibrary/CompletionCallback.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aiproj/checkers/graphics/Config.html" afterPath="$PROJECT_DIR$/aiproj/checkers/graphics/Config.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mknutsen/graphicslibrary/Config.html" afterPath="$PROJECT_DIR$/mknutsen/graphicslibrary/Config.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aiproj/checkers/graphics/EndScreen.html" afterPath="$PROJECT_DIR$/aiproj/checkers/graphics/EndScreen.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aiproj/checkers/graphics/GameComponent.RepaintCallback.html" afterPath="$PROJECT_DIR$/aiproj/checkers/graphics/GameComponent.RepaintCallback.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aiproj/checkers/graphics/GameComponent.TurnCallback.html" afterPath="$PROJECT_DIR$/aiproj/checkers/graphics/GameComponent.TurnCallback.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aiproj/checkers/graphics/GameComponent.html" afterPath="$PROJECT_DIR$/aiproj/checkers/graphics/GameComponent.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mknutsen/graphicslibrary/graphicsobject/GraphicObject.html" afterPath="$PROJECT_DIR$/mknutsen/graphicslibrary/graphicsobject/GraphicObject.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mknutsen/graphicslibrary/GraphicWidget.html" afterPath="$PROJECT_DIR$/mknutsen/graphicslibrary/GraphicWidget.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mknutsen/graphicslibrary/GraphicsComponent.html" afterPath="$PROJECT_DIR$/mknutsen/graphicslibrary/GraphicsComponent.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mknutsen/graphicslibrary/GraphicsDriver.html" afterPath="$PROJECT_DIR$/mknutsen/graphicslibrary/GraphicsDriver.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aiproj/checkers/game/player/MousePlayer.html" afterPath="$PROJECT_DIR$/aiproj/checkers/game/player/MousePlayer.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aiproj/checkers/game/player/Player.html" afterPath="$PROJECT_DIR$/aiproj/checkers/game/player/Player.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aiproj/checkers/game/player/RandomPlayer.html" afterPath="$PROJECT_DIR$/aiproj/checkers/game/player/RandomPlayer.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mknutsen/graphicslibrary/graphicsobject/RectangleGraphicObject.html" afterPath="$PROJECT_DIR$/mknutsen/graphicslibrary/graphicsobject/RectangleGraphicObject.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/allclasses-frame.html" afterPath="$PROJECT_DIR$/allclasses-frame.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/allclasses-noframe.html" afterPath="$PROJECT_DIR$/allclasses-noframe.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/constant-values.html" afterPath="$PROJECT_DIR$/constant-values.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/deprecated-list.html" afterPath="$PROJECT_DIR$/deprecated-list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/help-doc.html" afterPath="$PROJECT_DIR$/help-doc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index-files/index-1.html" afterPath="$PROJECT_DIR$/index-files/index-1.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index-files/index-10.html" afterPath="$PROJECT_DIR$/index-files/index-10.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index-files/index-11.html" afterPath="$PROJECT_DIR$/index-files/index-11.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index-files/index-12.html" afterPath="$PROJECT_DIR$/index-files/index-12.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index-files/index-13.html" afterPath="$PROJECT_DIR$/index-files/index-13.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index-files/index-14.html" afterPath="$PROJECT_DIR$/index-files/index-14.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index-files/index-15.html" afterPath="$PROJECT_DIR$/index-files/index-15.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index-files/index-16.html" afterPath="$PROJECT_DIR$/index-files/index-16.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index-files/index-17.html" afterPath="$PROJECT_DIR$/index-files/index-17.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index-files/index-18.html" afterPath="$PROJECT_DIR$/index-files/index-18.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index-files/index-19.html" afterPath="$PROJECT_DIR$/index-files/index-19.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index-files/index-2.html" afterPath="$PROJECT_DIR$/index-files/index-2.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index-files/index-3.html" afterPath="$PROJECT_DIR$/index-files/index-3.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index-files/index-4.html" afterPath="$PROJECT_DIR$/index-files/index-4.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index-files/index-5.html" afterPath="$PROJECT_DIR$/index-files/index-5.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index-files/index-6.html" afterPath="$PROJECT_DIR$/index-files/index-6.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index-files/index-7.html" afterPath="$PROJECT_DIR$/index-files/index-7.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index-files/index-8.html" afterPath="$PROJECT_DIR$/index-files/index-8.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index-files/index-9.html" afterPath="$PROJECT_DIR$/index-files/index-9.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/overview-frame.html" afterPath="$PROJECT_DIR$/overview-frame.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/overview-summary.html" afterPath="$PROJECT_DIR$/overview-summary.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/overview-tree.html" afterPath="$PROJECT_DIR$/overview-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aiproj/checkers/game/package-frame.html" afterPath="$PROJECT_DIR$/aiproj/checkers/game/package-frame.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aiproj/checkers/game/player/package-frame.html" afterPath="$PROJECT_DIR$/aiproj/checkers/game/player/package-frame.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aiproj/checkers/graphics/package-frame.html" afterPath="$PROJECT_DIR$/aiproj/checkers/graphics/package-frame.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mknutsen/graphicslibrary/package-frame.html" afterPath="$PROJECT_DIR$/mknutsen/graphicslibrary/package-frame.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mknutsen/graphicslibrary/graphicsobject/package-frame.html" afterPath="$PROJECT_DIR$/mknutsen/graphicslibrary/graphicsobject/package-frame.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aiproj/checkers/game/package-summary.html" afterPath="$PROJECT_DIR$/aiproj/checkers/game/package-summary.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aiproj/checkers/game/player/package-summary.html" afterPath="$PROJECT_DIR$/aiproj/checkers/game/player/package-summary.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aiproj/checkers/graphics/package-summary.html" afterPath="$PROJECT_DIR$/aiproj/checkers/graphics/package-summary.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mknutsen/graphicslibrary/package-summary.html" afterPath="$PROJECT_DIR$/mknutsen/graphicslibrary/package-summary.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mknutsen/graphicslibrary/graphicsobject/package-summary.html" afterPath="$PROJECT_DIR$/mknutsen/graphicslibrary/graphicsobject/package-summary.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aiproj/checkers/game/package-tree.html" afterPath="$PROJECT_DIR$/aiproj/checkers/game/package-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aiproj/checkers/game/player/package-tree.html" afterPath="$PROJECT_DIR$/aiproj/checkers/game/player/package-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aiproj/checkers/graphics/package-tree.html" afterPath="$PROJECT_DIR$/aiproj/checkers/graphics/package-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mknutsen/graphicslibrary/package-tree.html" afterPath="$PROJECT_DIR$/mknutsen/graphicslibrary/package-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mknutsen/graphicslibrary/graphicsobject/package-tree.html" afterPath="$PROJECT_DIR$/mknutsen/graphicslibrary/graphicsobject/package-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/serialized-form.html" afterPath="$PROJECT_DIR$/serialized-form.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Checkers.iws" />
@@ -98,8 +95,8 @@
       <file leaf-file-name="allclasses-frame.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/allclasses-frame.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.22172453">
-              <caret line="11" column="37" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
+            <state vertical-scroll-proportion="0.14109743">
+              <caret line="7" column="75" selection-start-line="7" selection-start-column="75" selection-end-line="7" selection-end-column="75" />
               <folding />
             </state>
           </provider>
@@ -146,6 +143,7 @@
         <option value="$PROJECT_DIR$/src/aiproj/checkers/graphics/CheckersPiece.java" />
         <option value="$PROJECT_DIR$/src/aiproj/checkers/graphics/GameComponent.java" />
         <option value="$PROJECT_DIR$/src/aiproj/checkers/game/CheckersBoard.java" />
+        <option value="$PROJECT_DIR$/allclasses-frame.html" />
       </list>
     </option>
   </component>
@@ -166,7 +164,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="5" />
     <option name="y" value="26" />
-    <option name="width" value="1670" />
+    <option name="width" value="1166" />
     <option name="height" value="1017" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -353,19 +351,24 @@
       <option name="project" value="LOCAL" />
       <updated>1447209984696</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="these are docs for the proejct">
+      <created>1447210116318</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1447210116318</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
     <option name="totallyTimeSpent" value="52196000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="5" y="26" width="1670" height="1017" extended-state="6" />
+    <frame x="5" y="26" width="1166" height="1017" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27807486" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -374,6 +377,7 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -402,7 +406,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="removed everything" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed everything" />
+    <MESSAGE value="these are docs for the proejct" />
+    <option name="LAST_COMMIT_MESSAGE" value="these are docs for the proejct" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -415,6 +420,22 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/allclasses-frame.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/allclasses-frame.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../GraphicsLibrary/src/mknutsen/graphicslibrary/graphicsobject/CircleGraphicObject.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -552,14 +573,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.17826086">
           <caret line="63" column="44" selection-start-line="63" selection-start-column="44" selection-end-line="63" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/allclasses-frame.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22172453">
-          <caret line="11" column="37" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.14109743">
+          <caret line="7" column="75" selection-start-line="7" selection-start-column="75" selection-end-line="7" selection-end-column="75" />
           <folding />
         </state>
       </provider>
