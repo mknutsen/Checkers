@@ -119,7 +119,6 @@ public class CheckersPiece extends CircleGraphicObject {
     @Override
     public boolean equals(final Object obj) {
         if (obj instanceof CheckersPiece) {
-            System.out.println(obj.toString() + " vs. " + toString());
             return this.toString().equals(obj.toString());
         }
         return false;

@@ -134,6 +134,7 @@ public class CheckersBoard {
     
     public final Hashtable<Coordinate, ArrayList<Coordinate>> getJumpLocations(CheckersPiece myPiece,
                                                                                MovesList availableMoves) {
+        myPiece = getPiece(myPiece.getRow(), myPiece.getCol());
         Hashtable<Coordinate, ArrayList<Coordinate>> deleteTable = new Hashtable<>();
         MovesList realMoves = new MovesList();
         for (Coordinate adjacentCell : availableMoves) {
@@ -296,7 +297,8 @@ public class CheckersBoard {
      *         place to move it to
      * @return true if move was successful and move was made. false otherwise.
      */
-    public final boolean makeMove(final CheckersPiece movingPiece, final Coordinate endCell) {
+    public final boolean makeMove(CheckersPiece movingPiece, final Coordinate endCell) {
+        movingPiece = getPiece(movingPiece.getRow(), movingPiece.getCol());
         System.out.println(movingPiece + " to  " + endCell);
         if (movingPiece.getIsPlayer1() != player1) {
             return false;
