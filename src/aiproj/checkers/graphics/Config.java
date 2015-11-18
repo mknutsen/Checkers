@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
  */
 public final class Config {
 
-    public static final BufferedImage[] pieces = new BufferedImage[2];
+    public static final BufferedImage[] pieces = new BufferedImage[3]; // 0, red; 1, black; 2, king
 
     public static final int PIECE_WIDTH = 70, PIECE_HEIGHT = 70;
 

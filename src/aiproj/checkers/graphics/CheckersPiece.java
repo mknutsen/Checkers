@@ -20,6 +20,7 @@ public class CheckersPiece extends CircleGraphicObject {
         try {
             Config.pieces[0] = ImageIO.read(CheckersPiece.class.getResourceAsStream("resource/red.png"));
             Config.pieces[1] = ImageIO.read(CheckersPiece.class.getResourceAsStream("resource/black.png"));
+            Config.pieces[2] = ImageIO.read(CheckersPiece.class.getResourceAsStream("resource/king.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -28,6 +29,8 @@ public class CheckersPiece extends CircleGraphicObject {
     private int row;
 
     private boolean player1;
+
+    private boolean isKing;
 
     private int col;
 
@@ -47,6 +50,12 @@ public class CheckersPiece extends CircleGraphicObject {
         this.row = row;
         this.col = col;
         this.player1 = player1;
+        this.isKing = false;
+    }
+
+    CheckersPiece(int row, int col, boolean player1, boolean isKing) {
+        this(row, col, player1);
+        this.isKing = isKing;
     }
 
     public static void main(String[] args) {
@@ -61,6 +70,11 @@ public class CheckersPiece extends CircleGraphicObject {
         int y = hoverX >= 0 && hoverY >= 0 ? hoverY : getY();
 
         gr.drawImage(getImage(), x - getRadius(), y - getRadius(), getRadius() * 2, getRadius() * 2, null);
+
+        if (isKing) {
+            gr.drawImage(Config.pieces[2], x - getRadius(), y - getRadius(), getRadius() * 2, getRadius() * 2 - 10,
+                    null);
+        }
 
         return true;
     }
@@ -112,12 +126,12 @@ public class CheckersPiece extends CircleGraphicObject {
     }
 
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         return row + col * 10 + (player1 ? 100 : 0);
     }
 
     @Override
-    public boolean equals(final Object obj) {
+    public final boolean equals(final Object obj) {
         if (obj instanceof CheckersPiece) {
             return this.toString().equals(obj.toString());
         }
@@ -125,19 +139,27 @@ public class CheckersPiece extends CircleGraphicObject {
     }
 
     @Override
-    public Object clone() {
-        return new CheckersPiece(row, col, player1);
+    public final Object clone() {
+        return new CheckersPiece(row, col, player1, isKing);
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return (player1 ? "Red " : "Black ") + "at " + row + ", " + col;
     }
 
-    public String getDrawLocation() {
+    public final String getDrawLocation() {
 
         int x = hoverX >= 0 && hoverY >= 0 ? hoverX : getX();
         int y = hoverX >= 0 && hoverY >= 0 ? hoverY : getY();
         return x + ", " + y;
+    }
+
+    public final boolean getIsKing() {
+        return isKing;
+    }
+
+    public final void king() {
+        isKing = true;
     }
 }
