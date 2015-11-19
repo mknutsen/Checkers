@@ -60,7 +60,8 @@ public abstract class Player {
     public final ArrayList<CheckersBoard.Coordinate> getAvailableMoves() {
         CheckersBoard game = getGame();
         for (CheckersPiece piece : getMyPieces(game, player1)) {
-            game.removeImpossibleMoves(CheckersBoard.getMoves(piece.getRow(), piece.getCol(), player1));
+            game.removeImpossibleMoves(
+                    CheckersBoard.getMoves(piece.getRow(), piece.getCol(), player1, piece.getIsKing()));
 
         }
         return null;

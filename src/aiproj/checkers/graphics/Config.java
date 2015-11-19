@@ -17,6 +17,8 @@ public final class Config {
 
     public static final int WINDOW_WIDTH = 750, WINDOW_HEIGHT = 750;
 
+    public static final int KING_WORTH = 1;
+
     private Config() {
 
     }

@@ -36,12 +36,13 @@ public class CheckersBoard {
      *         color of the piece there
      * @return a list of moves a piece of that color and that place could go
      */
-    public static MovesList getMoves(int row, int col, boolean player1) {
+    public static MovesList getMoves(int row, int col, boolean player1, boolean isKing) {
         MovesList nextMoves = new MovesList();
-        if (player1) {
+        if (player1 || isKing) {
             nextMoves.add(row + 1, col - 1);
             nextMoves.add(row + 1, col + 1);
-        } else {
+        }
+        if (!player1 || isKing) {
             nextMoves.add(row - 1, col + 1);
             nextMoves.add(row - 1, col - 1);
         }
@@ -57,8 +58,8 @@ public class CheckersBoard {
      *         color of the piece
      * @return a list of moves a piece of that color and that place could go
      */
-    public static MovesList getMoves(Coordinate coordinate, boolean player1) {
-        return CheckersBoard.getMoves(coordinate.getRow(), coordinate.getCol(), player1);
+    public static MovesList getMoves(Coordinate coordinate, boolean player1, boolean isKing) {
+        return CheckersBoard.getMoves(coordinate.getRow(), coordinate.getCol(), player1, isKing);
     }
     
     /**
@@ -101,7 +102,14 @@ public class CheckersBoard {
     }
     
     public final int score() {
-        return 0;
+        int score = player1Pieces.size() - player2Pieces.size();
+        for (CheckersPiece piece : player1Pieces) {
+            score += piece.getIsKing() ? Config.KING_WORTH : 0;
+        }
+        for (CheckersPiece piece : player2Pieces) {
+            score += piece.getIsKing() ? -1 * Config.KING_WORTH : 0;
+        }
+        return score;
     }
     
     public final boolean isPlayer1() {
@@ -283,7 +291,7 @@ public class CheckersBoard {
                     string += "[O]";
                 }
             }
-            string += "\n";
+            string += "\nScore: " + score();
         }
         return string;
     }
@@ -303,12 +311,14 @@ public class CheckersBoard {
         if (movingPiece.getIsPlayer1() != player1) {
             return false;
         }
-        MovesList availableMoves = getMoves(movingPiece.getRow(), movingPiece.getCol(), movingPiece.getIsPlayer1());
+        MovesList availableMoves = getMoves(movingPiece.getRow(), movingPiece.getCol(), movingPiece.getIsPlayer1(),
+                movingPiece.getIsKing());
         if (removeImpossibleMoves(availableMoves).contains(endCell)) {
             checkersBoard[movingPiece.getRow()][movingPiece.getCol()] = null;
             movingPiece.setCol(endCell.col);
             movingPiece.setRow(endCell.row);
             checkersBoard[endCell.getRow()][endCell.getCol()] = movingPiece;
+            checkIfPieceShouldBeKing(endCell.getRow(), endCell.getCol());
             nextTurn();
             return true;
         }
@@ -322,6 +332,29 @@ public class CheckersBoard {
             deleteList.forEach(toDelete -> deletePiece(toDelete));
             nextTurn();
             return true;
+        }
+        return false;
+    }
+
+    /**
+     * @param row
+     *         row of piece
+     * @param col
+     *         column of piece
+     * @return true if piece was kinged
+     */
+    private boolean checkIfPieceShouldBeKing(final int row, final int col) {
+        CheckersPiece piece = getPiece(row, col);
+        if (piece.getIsPlayer1()) {
+            if (row == 7) {
+                piece.king();
+                return true;
+            }
+        } else {
+            if (row == 0) {
+                piece.king();
+                return true;
+            }
         }
         return false;
     }
