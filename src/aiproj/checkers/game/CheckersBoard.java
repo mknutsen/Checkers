@@ -139,7 +139,17 @@ public class CheckersBoard {
         }
         return realMoves;
     }
-    
+
+    /**
+     * This method sucks im sorry.
+     *
+     * @param myPiece
+     *         piece to check for jump locations at
+     * @param availableMoves
+     *         available moves for it to make
+     * @return a hashtable. key is a coordinate for the location the piece ends up and the value is the coordinates of
+     * the pieces that need to be deleted if the piece lands there.
+     */
     public final Hashtable<Coordinate, ArrayList<Coordinate>> getJumpLocations(CheckersPiece myPiece,
                                                                                MovesList availableMoves) {
         myPiece = getPiece(myPiece.getRow(), myPiece.getCol());
@@ -153,8 +163,11 @@ public class CheckersBoard {
                 Coordinate jumpTo = new Coordinate(myPiece.getRow() + (adjacentCell.row - myPiece.getRow()) * 2,
                         myPiece.getCol() + (adjacentCell.col - myPiece.getCol()) * 2);
                 deleteTable.put(jumpTo, toDelete);
-                checkForJumps(jumpTo.row, jumpTo.col, player1, realMoves, deleteTable,
-                        (ArrayList<Coordinate>) toDelete.clone());
+
+                ArrayList<Coordinate> toDeleteClone = new ArrayList<>();
+                toDelete.forEach(coordinate -> toDeleteClone.add((Coordinate) coordinate.clone()));
+
+                checkForJumps(jumpTo.row, jumpTo.col, player1, realMoves, deleteTable, toDeleteClone);
             }
         }
         return deleteTable;
@@ -204,13 +217,16 @@ public class CheckersBoard {
                     if (adjacentPiece != null && adjacentPiece.getIsPlayer1() != player1) {
                         toDelete.add(adjacentCell);
                         deleteTable.put(jumpTo, toDelete);
-                        checkForJumps(jumpTo.row, jumpTo.col, player1, moves, deleteTable,
-                                (ArrayList<Coordinate>) toDelete.clone());
+
+                        ArrayList<Coordinate> toDeleteClone = new ArrayList<>();
+                        toDelete.forEach(coordinate -> toDeleteClone.add((Coordinate) coordinate.clone()));
+
+                        checkForJumps(jumpTo.row, jumpTo.col, player1, moves, deleteTable, toDeleteClone);
                     }
                 }
             }
         } else {
-            //System.out.println("Removing: " + deleteTable.remove(currentLoc));
+            deleteTable.remove(currentLoc);
         }
     }
     
@@ -291,8 +307,9 @@ public class CheckersBoard {
                     string += "[O]";
                 }
             }
-            string += "\nScore: " + score();
+            string += "\n";
         }
+        string += "Score: " + score();
         return string;
     }
     
@@ -329,7 +346,11 @@ public class CheckersBoard {
             movingPiece.setCol(endCell.col);
             movingPiece.setRow(endCell.row);
             checkersBoard[endCell.getRow()][endCell.getCol()] = movingPiece;
-            deleteList.forEach(toDelete -> deletePiece(toDelete));
+            deleteList.forEach(toDelete -> {
+                if (!deletePiece(toDelete)) {
+                    System.err.println("CAN'T DELETE: " + toDelete + " from " + deleteList);
+                }
+            });
             nextTurn();
             return true;
         }
@@ -359,14 +380,19 @@ public class CheckersBoard {
         return false;
     }
     
-    private void deletePiece(final Coordinate toDelete) {
+    private boolean deletePiece(final Coordinate toDelete) {
+
         CheckersPiece tempPiece = checkersBoard[toDelete.row][toDelete.col];
+        if (tempPiece == null) {
+            return false;
+        }
         if (tempPiece.getIsPlayer1()) {
             player1Pieces.remove(tempPiece);
         } else {
             player2Pieces.remove(tempPiece);
         }
         checkersBoard[toDelete.row][toDelete.col] = null;
+        return true;
         
     }
     
@@ -500,7 +526,7 @@ public class CheckersBoard {
         }
         
         @Override
-        protected Object clone() throws CloneNotSupportedException {
+        protected Object clone() {
             return new Coordinate(row, col);
         }
         

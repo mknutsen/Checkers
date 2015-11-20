@@ -72,8 +72,10 @@ public class GameComponent extends GraphicsComponent {
                 // if the thing is a computer itll spit out a move to make, make the move
                 if (move != null) {
                     System.out.println("making this move: " + move);
-                    board.makeMove(board.getPiece(move.getPiece().getRow(), move.getPiece().getCol()),
-                            move.getEndCell());
+                    boolean moveMade =
+                            board.makeMove(board.getPiece(move.getPiece().getRow(), move.getPiece().getCol()),
+                                    move.getEndCell());
+                    System.out.println("move made was successful: " + move + " " + moveMade);
                 }
             }
         });
