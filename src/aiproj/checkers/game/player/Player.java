@@ -5,6 +5,7 @@ import aiproj.checkers.graphics.CheckersPiece;
 import aiproj.checkers.graphics.GameComponent;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 /**
  * Player gives access to the components necessary to play without giving player the ability to mess with the game.
@@ -57,14 +58,23 @@ public abstract class Player {
     /**
      * @return the moves the player can make
      */
-    public final ArrayList<CheckersBoard.Coordinate> getAvailableMoves() {
+    public final Hashtable<CheckersPiece, ArrayList<CheckersBoard.Coordinate>> getAvailableMoves() {
+        Hashtable<CheckersPiece, ArrayList<CheckersBoard.Coordinate>> movesTable = new Hashtable<>();
         CheckersBoard game = getGame();
-        for (CheckersPiece piece : getMyPieces(game, player1)) {
-            game.removeImpossibleMoves(
-                    CheckersBoard.getMoves(piece.getRow(), piece.getCol(), player1, piece.getIsKing()));
-
+        ArrayList<CheckersPiece> myPieces = getMyPieces(game, player1);
+        if (!myPieces.isEmpty()) {
+            for (CheckersPiece piece : myPieces) {
+                ArrayList<CheckersBoard.Coordinate> moves = new ArrayList<>();
+                CheckersBoard.MovesList moveList =
+                        CheckersBoard.getMoves(piece.getRow(), piece.getCol(), player1, piece.getIsKing());
+                game.removeImpossibleMoves(moveList).forEach(move -> moves.add(move));
+                game.getOneJumps(piece, moveList).forEach(move -> moves.add(move));
+                if (!moves.isEmpty()) {
+                    movesTable.put(piece, moves);
+                }
+            }
         }
-        return null;
+        return movesTable;
 
     }
 
@@ -92,9 +102,20 @@ public abstract class Player {
     }
 
     /**
-     * @return when you complete a turn, call trigger move. this is important.
+     * gets called when its your turn
+     *
+     * @return the move you want to make or null if you dont want to make a move right now. if you return null, just
+     * call player.makeMove when you're ready.
      */
-    public abstract CheckersBoard.Move triggerTurn();
+    public final CheckersBoard.Move triggerTurn() {
+        Hashtable<CheckersPiece, ArrayList<CheckersBoard.Coordinate>> availableMoves = getAvailableMoves();
+        if (availableMoves.isEmpty()) {
+            game.declareWinner(!getIsPlayer1());
+            return null;
+        } else {
+            return makeTurn(availableMoves);
+        }
+    }
 
 
     /**
@@ -170,4 +191,14 @@ public abstract class Player {
     public final boolean getIsPlayer1() {
         return player1;
     }
+
+    /**
+     * Make a move
+     *
+     * @param availableMoves
+     *         the moves you can make in a hashtable <piece, list of moves>
+     * @return the move to make, or null. if you return null, call makeMove when you have a move to make.
+     */
+    public abstract CheckersBoard.Move makeTurn(
+            final Hashtable<CheckersPiece, ArrayList<CheckersBoard.Coordinate>> availableMoves);
 }

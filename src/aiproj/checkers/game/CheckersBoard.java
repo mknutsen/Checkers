@@ -24,7 +24,9 @@ public class CheckersBoard {
     private ArrayList<CheckersPiece> player1Pieces, player2Pieces;
     
     private GameComponent.TurnCallback callback;
-
+    
+    private int winner;
+    
     /**
      * gets moves available at that location given a color NOT including the board.
      *
@@ -48,7 +50,7 @@ public class CheckersBoard {
         }
         return nextMoves;
     }
-
+    
     /**
      * gets moves available at that location given a color NOT including the board.
      *
@@ -77,7 +79,7 @@ public class CheckersBoard {
         CheckersBoard board = new CheckersBoard();
         board.newGame();
         System.out.println(board);
-
+        
     }
     
     /**
@@ -92,12 +94,12 @@ public class CheckersBoard {
      */
     public static MovesList getMoves(int row, int col) {
         MovesList nextMoves = new MovesList();
-
+        
         nextMoves.add(row + 1, col + 1);
         nextMoves.add(row - 1, col + 1);
         nextMoves.add(row + 1, col - 1);
         nextMoves.add(row - 1, col - 1);
-
+        
         return nextMoves;
     }
     
@@ -129,19 +131,21 @@ public class CheckersBoard {
      *
      * @return the list of moves that piece could make incuding the surroundings
      */
-    public final MovesList removeImpossibleMoves(MovesList availableMoves) {
+    public final ArrayList<Coordinate> removeImpossibleMoves(MovesList availableMoves) {
         MovesList realMoves = new MovesList();
-        for (Coordinate coordinate : availableMoves) {
-            CheckersPiece piece = getPiece(coordinate);
-            if (piece == null) {
-                realMoves.add(coordinate);
+        if (availableMoves != null) {
+            for (Coordinate coordinate : availableMoves) {
+                CheckersPiece piece = getPiece(coordinate);
+                if (piece == null) {
+                    realMoves.add(coordinate);
+                }
             }
         }
-        return realMoves;
+        return realMoves.list;
     }
-
+    
     /**
-     * This method sucks im sorry.
+     * This method sucks im sorry. why the fuck doesnt this work.
      *
      * @param myPiece
      *         piece to check for jump locations at
@@ -163,10 +167,10 @@ public class CheckersBoard {
                 Coordinate jumpTo = new Coordinate(myPiece.getRow() + (adjacentCell.row - myPiece.getRow()) * 2,
                         myPiece.getCol() + (adjacentCell.col - myPiece.getCol()) * 2);
                 deleteTable.put(jumpTo, toDelete);
-
+                
                 ArrayList<Coordinate> toDeleteClone = new ArrayList<>();
                 toDelete.forEach(coordinate -> toDeleteClone.add((Coordinate) coordinate.clone()));
-
+                
                 checkForJumps(jumpTo.row, jumpTo.col, player1, realMoves, deleteTable, toDeleteClone);
             }
         }
@@ -217,10 +221,10 @@ public class CheckersBoard {
                     if (adjacentPiece != null && adjacentPiece.getIsPlayer1() != player1) {
                         toDelete.add(adjacentCell);
                         deleteTable.put(jumpTo, toDelete);
-
+                        
                         ArrayList<Coordinate> toDeleteClone = new ArrayList<>();
                         toDelete.forEach(coordinate -> toDeleteClone.add((Coordinate) coordinate.clone()));
-
+                        
                         checkForJumps(jumpTo.row, jumpTo.col, player1, moves, deleteTable, toDeleteClone);
                     }
                 }
@@ -315,6 +319,8 @@ public class CheckersBoard {
     
     /**
      * makes the move if its possible
+     * <p>
+     * only allow single jumps.
      *
      * @param movingPiece
      *         piece to move
@@ -338,25 +344,63 @@ public class CheckersBoard {
             checkIfPieceShouldBeKing(endCell.getRow(), endCell.getCol());
             nextTurn();
             return true;
-        }
-        Hashtable<Coordinate, ArrayList<Coordinate>> deleteTable = getJumpLocations(movingPiece, availableMoves);
-        ArrayList<Coordinate> deleteList = deleteTable.get(endCell);
-        if (deleteList != null) {
+        } else if (getOneJumps(movingPiece, availableMoves).contains(endCell)) {
+            final int newCol = movingPiece.getCol() + (endCell.getCol() - movingPiece.getCol()) / 2;
+            final int newRow = movingPiece.getRow() + (endCell.getRow() - movingPiece.getRow()) / 2;
+            
+            deletePiece(new Coordinate(newRow, newCol));
+            
             checkersBoard[movingPiece.getRow()][movingPiece.getCol()] = null;
             movingPiece.setCol(endCell.col);
             movingPiece.setRow(endCell.row);
             checkersBoard[endCell.getRow()][endCell.getCol()] = movingPiece;
-            deleteList.forEach(toDelete -> {
-                if (!deletePiece(toDelete)) {
-                    System.err.println("CAN'T DELETE: " + toDelete + " from " + deleteList);
-                }
-            });
+            checkIfPieceShouldBeKing(endCell.getRow(), endCell.getCol());
             nextTurn();
             return true;
         }
+        //        Hashtable<Coordinate, ArrayList<Coordinate>> deleteTable = getJumpLocations(movingPiece,
+        // availableMoves);
+        //        ArrayList<Coordinate> deleteList = deleteTable.get(endCell);
+        //        if (deleteList != null) {
+        //            checkersBoard[movingPiece.getRow()][movingPiece.getCol()] = null;
+        //            movingPiece.setCol(endCell.col);
+        //            movingPiece.setRow(endCell.row);
+        //            checkersBoard[endCell.getRow()][endCell.getCol()] = movingPiece;
+        //            deleteList.forEach(toDelete -> {
+        //                if (!deletePiece(toDelete)) {
+        //                    System.err.println("CAN'T DELETE: " + toDelete + " from " + deleteList);
+        //                }
+        //            });
+        //            nextTurn();
+        //            return true;
+        //        }
         return false;
     }
-
+    
+    public final ArrayList<Coordinate> getOneJumps(final CheckersPiece piece, final MovesList availableMoves) {
+        MovesList newList = new MovesList();
+        for (Coordinate coordinate : availableMoves) {
+            CheckersPiece tempPiece = getPiece(coordinate);
+            if (tempPiece != null && tempPiece.getIsPlayer1() != piece.getIsPlayer1()) {
+                final int newCol = piece.getCol() + (tempPiece.getCol() - piece.getCol()) * 2;
+                final int newRow = piece.getRow() + (tempPiece.getRow() - piece.getRow()) * 2;
+                final CheckersPiece newPiece;
+                try {
+                    newPiece = getPiece(newRow, newCol);
+                    System.out.println(newRow + ", " + newCol);
+                    if (newPiece == null) {
+                        newList.add(newRow, newCol);
+                    } else {
+                        System.out.println("THERES SOMETHING THERE: " + newPiece);
+                    }
+                } catch (IllegalArgumentException e) {
+                    System.err.println(newRow + ", " + newCol + " tried to jump there");
+                }
+            }
+        }
+        return newList.list;
+    }
+    
     /**
      * @param row
      *         row of piece
@@ -381,8 +425,8 @@ public class CheckersBoard {
     }
     
     private boolean deletePiece(final Coordinate toDelete) {
-
         CheckersPiece tempPiece = checkersBoard[toDelete.row][toDelete.col];
+        System.out.println("to delete at " + tempPiece);
         if (tempPiece == null) {
             return false;
         }
@@ -392,6 +436,7 @@ public class CheckersBoard {
             player2Pieces.remove(tempPiece);
         }
         checkersBoard[toDelete.row][toDelete.col] = null;
+        
         return true;
         
     }
@@ -403,22 +448,25 @@ public class CheckersBoard {
      */
     public final int checkWin() {
         boolean player1 = false, player2 = false;
-        
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                if (checkersBoard[i][j] != null) {
-                    if (checkersBoard[i][j].getIsPlayer1()) {
-                        player1 = true;
-                    } else {
-                        player2 = true;
-                    }
-                    if (player1 && player2) {
-                        return 0;
+        if (winner != 0) {
+            return winner;
+        } else {
+            for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 8; j++) {
+                    if (checkersBoard[i][j] != null) {
+                        if (checkersBoard[i][j].getIsPlayer1()) {
+                            player1 = true;
+                        } else {
+                            player2 = true;
+                        }
+                        if (player1 && player2) {
+                            return 0;
+                        }
                     }
                 }
             }
+            return player1 ? 1 : -1;
         }
-        return player1 ? 1 : -1;
     }
     
     
@@ -436,23 +484,23 @@ public class CheckersBoard {
     public Object clone() throws CloneNotSupportedException {
         //new board
         CheckersBoard board = new CheckersBoard();
-
+        
         //initialize everything
         board.player1Pieces = new ArrayList<>();
         board.player2Pieces = new ArrayList<>();
         board.checkersBoard = new CheckersPiece[8][8];
-
+        
         //copy pieces
         player1Pieces.forEach(piece -> board.player1Pieces.add((CheckersPiece) piece.clone()));
         player2Pieces.forEach(piece -> board.player2Pieces.add((CheckersPiece) piece.clone()));
-
+        
         //copy turn
         board.player1 = player1;
-
+        
         //put the pieces on the board
         board.player1Pieces.forEach(piece -> board.checkersBoard[piece.getRow()][piece.getCol()] = piece);
         board.player2Pieces.forEach(piece -> board.checkersBoard[piece.getRow()][piece.getCol()] = piece);
-
+        
         //board callback being null might be dirty
         board.callback = null;
         
@@ -468,6 +516,10 @@ public class CheckersBoard {
     
     public final void setCallback(GameComponent.TurnCallback callback) {
         this.callback = callback;
+    }
+    
+    public final void declareWinner(final boolean winner) {
+        this.winner = winner ? 1 : -1;
     }
     
     /**
@@ -655,7 +707,7 @@ public class CheckersBoard {
         public Coordinate getEndCell() {
             return move;
         }
-
+        
         public final String toString() {
             return piece + " to " + getEndCell();
         }
