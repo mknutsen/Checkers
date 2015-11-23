@@ -21,6 +21,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mknutsen/graphicslibrary/GraphicWidget.html" afterPath="$PROJECT_DIR$/mknutsen/graphicslibrary/GraphicWidget.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mknutsen/graphicslibrary/GraphicsComponent.html" afterPath="$PROJECT_DIR$/mknutsen/graphicslibrary/GraphicsComponent.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mknutsen/graphicslibrary/GraphicsDriver.html" afterPath="$PROJECT_DIR$/mknutsen/graphicslibrary/GraphicsDriver.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../GraphicsLibrary/GraphicsLibrary.iml" afterPath="$PROJECT_DIR$/../GraphicsLibrary/GraphicsLibrary.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aiproj/checkers/game/player/MousePlayer.html" afterPath="$PROJECT_DIR$/aiproj/checkers/game/player/MousePlayer.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aiproj/checkers/game/player/Player.html" afterPath="$PROJECT_DIR$/aiproj/checkers/game/player/Player.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aiproj/checkers/game/player/RandomPlayer.html" afterPath="$PROJECT_DIR$/aiproj/checkers/game/player/RandomPlayer.html" />
@@ -95,8 +96,8 @@
       <file leaf-file-name="allclasses-frame.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/allclasses-frame.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.14109743">
-              <caret line="7" column="75" selection-start-line="7" selection-start-column="75" selection-end-line="7" selection-end-column="75" />
+            <state vertical-scroll-proportion="0.78086764">
+              <caret line="39" column="7" selection-start-line="39" selection-start-column="7" selection-end-line="39" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -162,10 +163,9 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="5" />
-    <option name="y" value="26" />
-    <option name="width" value="1166" />
-    <option name="height" value="1017" />
+    <option name="y" value="23" />
+    <option name="width" value="1680" />
+    <option name="height" value="1023" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -357,14 +357,20 @@
       <option name="project" value="LOCAL" />
       <updated>1447210116318</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="new docs for new updates">
+      <created>1447788022070</created>
+      <option name="number" value="00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1447788022070</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
     <option name="totallyTimeSpent" value="52196000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="5" y="26" width="1166" height="1017" extended-state="0" />
+    <frame x="0" y="23" width="1680" height="1023" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27807486" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -407,7 +413,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="removed everything" />
     <MESSAGE value="these are docs for the proejct" />
-    <option name="LAST_COMMIT_MESSAGE" value="these are docs for the proejct" />
+    <MESSAGE value="new docs for new updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="new docs for new updates" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -420,6 +427,14 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/allclasses-frame.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/allclasses-frame.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -578,8 +593,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/allclasses-frame.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14109743">
-          <caret line="7" column="75" selection-start-line="7" selection-start-column="75" selection-end-line="7" selection-end-column="75" />
+        <state vertical-scroll-proportion="0.78086764">
+          <caret line="39" column="7" selection-start-line="39" selection-start-column="7" selection-end-line="39" selection-end-column="7" />
           <folding />
         </state>
       </provider>
