@@ -4,31 +4,16 @@ import aiproj.checkers.game.CheckersBoard;
 import aiproj.checkers.game.player.Player;
 import mknutsen.graphicslibrary.GraphicsComponent;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 /**
  * game component handles interfacing the board and the players as well as displaying the graphics
  */
 public class GameComponent extends GraphicsComponent {
 
-    private static BufferedImage background;
-
-    /**
-     * Handles loading the background image
-     */
-    static {
-        try {
-            background = ImageIO.read(CheckersPiece.class.getResourceAsStream("resource/background.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     int i = 0;
 
@@ -107,13 +92,13 @@ public class GameComponent extends GraphicsComponent {
         //        g.setColor(new Color((int) (Math.random() * 255), (int) (Math.random() * 255), (int) (Math.random()
         // * 255)));
         //        g.fillRect(0, 0, Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT);
-        g.drawImage(background, 0, 0, Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT, null);
+        g.drawImage(Config.backgroundImage, 0, 0, Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT, null);
         board.draw(g);
         //        System.out.println(board);
         int win = board.checkWin();
 
         if (win != 0) {
-            triggerCallback(win);
+            triggerCallback(win, board);
         }
 
         try {

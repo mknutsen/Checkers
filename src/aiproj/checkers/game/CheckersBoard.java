@@ -16,7 +16,9 @@ import java.util.function.Consumer;
  * contains the board with the ability to modify it through a few moves.
  */
 public class CheckersBoard {
-    
+
+    private String movesMade = "";
+
     private boolean player1 = true;
     
     private CheckersPiece[][] checkersBoard;
@@ -342,6 +344,7 @@ public class CheckersBoard {
             movingPiece.setRow(endCell.row);
             checkersBoard[endCell.getRow()][endCell.getCol()] = movingPiece;
             checkIfPieceShouldBeKing(endCell.getRow(), endCell.getCol());
+            movesMade += movingPiece.toString() + " to " + endCell.toString() + "\n";
             nextTurn();
             return true;
         } else if (getOneJumps(movingPiece, availableMoves).contains(endCell)) {
@@ -355,6 +358,8 @@ public class CheckersBoard {
             movingPiece.setRow(endCell.row);
             checkersBoard[endCell.getRow()][endCell.getCol()] = movingPiece;
             checkIfPieceShouldBeKing(endCell.getRow(), endCell.getCol());
+            movesMade +=
+                    movingPiece.toString() + " to " + endCell.toString() + " taking " + newRow + ", " + newCol + "\n";
             nextTurn();
             return true;
         }
@@ -520,6 +525,10 @@ public class CheckersBoard {
     
     public final void declareWinner(final boolean winner) {
         this.winner = winner ? 1 : -1;
+    }
+
+    public final String getBoardString() {
+        return movesMade;
     }
     
     /**
