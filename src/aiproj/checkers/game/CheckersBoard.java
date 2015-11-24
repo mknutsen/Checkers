@@ -453,9 +453,7 @@ public class CheckersBoard {
      */
     public final int checkWin() {
         boolean player1 = false, player2 = false;
-        if (winner != 0) {
-            return winner;
-        } else {
+        if (winner == 0) {
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
                     if (checkersBoard[i][j] != null) {
@@ -470,45 +468,46 @@ public class CheckersBoard {
                     }
                 }
             }
-            return player1 ? 1 : -1;
+            winner = player1 ? 1 : -1;
         }
+        return winner;
     }
-    
-    
+
+
     @Override
     public int hashCode() {
         return super.hashCode();
     }
-    
+
     @Override
     public boolean equals(final Object obj) {
         return super.equals(obj);
     }
-    
+
     @Override
     public Object clone() throws CloneNotSupportedException {
         //new board
         CheckersBoard board = new CheckersBoard();
-        
+
         //initialize everything
         board.player1Pieces = new ArrayList<>();
         board.player2Pieces = new ArrayList<>();
         board.checkersBoard = new CheckersPiece[8][8];
-        
+
         //copy pieces
         player1Pieces.forEach(piece -> board.player1Pieces.add((CheckersPiece) piece.clone()));
         player2Pieces.forEach(piece -> board.player2Pieces.add((CheckersPiece) piece.clone()));
-        
+
         //copy turn
         board.player1 = player1;
-        
+
         //put the pieces on the board
         board.player1Pieces.forEach(piece -> board.checkersBoard[piece.getRow()][piece.getCol()] = piece);
         board.player2Pieces.forEach(piece -> board.checkersBoard[piece.getRow()][piece.getCol()] = piece);
-        
+
         //board callback being null might be dirty
         board.callback = null;
-        
+
         return board;
     }
     

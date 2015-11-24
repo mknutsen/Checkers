@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="Checkers:jar2">
-    <output-path>$PROJECT_DIR$/out/artifacts/Checkers_jar2</output-path>
-    <root id="archive" name="AIForDummies.jar">
-      <element id="module-output" name="Checkers" />
-      <element id="module-output" name="GraphicsLibrary" />
-    </root>
-  </artifact>
-</component>
