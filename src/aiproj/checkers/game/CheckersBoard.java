@@ -337,6 +337,10 @@ public class CheckersBoard {
      * @return true if move was successful and move was made. false otherwise.
      */
     public final boolean makeMove(CheckersPiece movingPiece, final Coordinate endCell) {
+        if (winner != 0) {
+            System.out.println("the game is over");
+            return false;
+        }
         movingPiece = getPiece(movingPiece.getRow(), movingPiece.getCol());
         System.out.println(movingPiece + " to  " + endCell);
         if (movingPiece.getIsPlayer1() != player1) {
