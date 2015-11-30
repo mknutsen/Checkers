@@ -2,6 +2,7 @@ package aiproj.checkers.game.player.ai;
 
 import aiproj.checkers.game.CheckersBoard;
 import aiproj.checkers.graphics.CheckersPiece;
+import aiproj.checkers.graphics.Config;
 
 import java.util.ArrayList;
 
@@ -13,8 +14,8 @@ public class GameTree {
     Node root;
 
     public GameTree(final CheckersBoard game) {
-        root = new Node(game, game.score());
-
+        root = new Node(game);
+        populate(Config.AI_DEPTH, root);
     }
 
     /**
@@ -43,7 +44,7 @@ public class GameTree {
                 return;
             }
         }
-        Node node = new Node((CheckersBoard) root.board.clone(), root.score, move);
+        Node node = new Node((CheckersBoard) root.board.clone(), move);
         node.board.makeMove(move.getPiece(), move.getEndCell());
         node.score = node.board.score();
 
@@ -79,15 +80,25 @@ public class GameTree {
                 for (CheckersBoard.Move move : node.board.getMovesForPlayer(node.board.isPlayer1())) {
                     CheckersBoard board = (CheckersBoard) node.board.clone();
                     board.makeMove(move.getPiece(), move.getEndCell());
-                    node.nodeList.add(new Node(board, board.score()));
+
+                    int score = board.score();
+
+                    node.nodeList.add(new Node(board));
+
                     if (node.board.isPlayer1()) {
-
+                        if (node.score < score) {
+                            node.score = score;
+                        }
                     } else {
-
+                        if (node.score > score) {
+                            node.score = score;
+                        }
                     }
                 }
             }
             populate(layersDeep - 1, node);
+        } else {
+            node.score = node.board.score();
         }
     }
 
@@ -101,15 +112,15 @@ public class GameTree {
 
         int score;
 
-        Node(final CheckersBoard board, int score) {
-            this(board, score, null);
+        Node(final CheckersBoard board) {
+            this(board, null);
         }
 
-        Node(final CheckersBoard board, int score, CheckersBoard.Move move) {
+        Node(final CheckersBoard board, CheckersBoard.Move move) {
             this.board = board;
             nodeList = new ArrayList<>();
-            this.score = score;
             moveUsed = move;
+            score = board.isPlayer1() ? Integer.MIN_VALUE : Integer.MAX_VALUE;
 
         }
     }

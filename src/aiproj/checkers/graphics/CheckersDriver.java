@@ -1,7 +1,7 @@
 package aiproj.checkers.graphics;
 
+import aiproj.checkers.game.player.AIPlayer;
 import aiproj.checkers.game.player.MousePlayer;
-import aiproj.checkers.game.player.RandomPlayer;
 import mknutsen.graphicslibrary.GraphicsDriver;
 
 /**
@@ -11,6 +11,6 @@ public class CheckersDriver {
 
     public static void main(String[] args) {
         new GraphicsDriver(Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT,
-                new GameComponent(new MousePlayer(), new RandomPlayer()), new EndScreen());
+                new GameComponent(new MousePlayer(), new AIPlayer()), new EndScreen());
     }
 }

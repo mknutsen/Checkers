@@ -16,7 +16,6 @@ public class AIPlayer extends Player {
 
     public AIPlayer() {
         tree = new GameTree(getGame());
-        tree.populate();
     }
 
     @Override

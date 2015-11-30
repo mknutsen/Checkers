@@ -82,12 +82,8 @@ public abstract class Player {
      * @return a cloned copy of the game. I repeat: a cloned copy.
      */
     public final CheckersBoard getGame() {
-        try {
-            return (CheckersBoard) game.clone();
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
-        return null;
+
+        return (CheckersBoard) game.clone();
     }
 
     /**
