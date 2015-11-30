@@ -106,12 +106,18 @@ public class CheckersBoard {
     }
     
     public final int score() {
-        int score = player1Pieces.size() - player2Pieces.size();
-        for (CheckersPiece piece : player1Pieces) {
-            score += piece.getIsKing() ? Config.KING_WORTH : 0;
-        }
-        for (CheckersPiece piece : player2Pieces) {
-            score += piece.getIsKing() ? -1 * Config.KING_WORTH : 0;
+        int score;
+        if (winner != 0) {
+            score = Config.WINNING_VALUE * winner;
+        } else {
+            score = player1Pieces.size() - player2Pieces.size();
+
+            for (CheckersPiece piece : player1Pieces) {
+                score += piece.getIsKing() ? Config.KING_WORTH : 0;
+            }
+            for (CheckersPiece piece : player2Pieces) {
+                score += piece.getIsKing() ? -1 * Config.KING_WORTH : 0;
+            }
         }
         return score;
     }

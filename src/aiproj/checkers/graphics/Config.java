@@ -9,7 +9,7 @@ import java.io.IOException;
  */
 public final class Config {
 
-    public static final BufferedImage[] pieces = new BufferedImage[3]; // 0, red; 1, black; 2, king
+    public static final BufferedImage[] pieces = new BufferedImage[3]; // 0, red; 1, black; 2, king overlay
 
     public static final int PIECE_WIDTH = 70, PIECE_HEIGHT = 70;
 
@@ -22,6 +22,8 @@ public final class Config {
     public static final int KING_WORTH = 1;
 
     public static final BufferedImage backgroundImage;
+
+    public static final int WINNING_VALUE = 1000000;
 
     static {
         BufferedImage backgroundImage1;
