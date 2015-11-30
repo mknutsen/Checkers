@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00d2b8c2-e378-48fe-82c1-ac25998cf90e" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/Checkers_jar/Checkers.jar" afterPath="$PROJECT_DIR$/out/artifacts/Checkers_jar/Checkers.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Checkers/aiproj/checkers/game/CheckersBoard$Coordinate.class" afterPath="$PROJECT_DIR$/out/production/Checkers/aiproj/checkers/game/CheckersBoard$Coordinate.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Checkers/aiproj/checkers/game/CheckersBoard$Move.class" afterPath="$PROJECT_DIR$/out/production/Checkers/aiproj/checkers/game/CheckersBoard$Move.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Checkers/aiproj/checkers/game/CheckersBoard$MovesList$1.class" afterPath="$PROJECT_DIR$/out/production/Checkers/aiproj/checkers/game/CheckersBoard$MovesList$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Checkers/aiproj/checkers/game/CheckersBoard$MovesList.class" afterPath="$PROJECT_DIR$/out/production/Checkers/aiproj/checkers/game/CheckersBoard$MovesList.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Checkers/aiproj/checkers/game/CheckersBoard.class" afterPath="$PROJECT_DIR$/out/production/Checkers/aiproj/checkers/game/CheckersBoard.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Checkers/aiproj/checkers/graphics/Config.class" afterPath="$PROJECT_DIR$/out/production/Checkers/aiproj/checkers/graphics/Config.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/aiproj/checkers/game/CheckersBoard.java" afterPath="$PROJECT_DIR$/src/aiproj/checkers/game/CheckersBoard.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/aiproj/checkers/game/player/ai/GameTree.java" afterPath="$PROJECT_DIR$/src/aiproj/checkers/game/player/ai/GameTree.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Checkers.iws" />
@@ -30,7 +38,7 @@
         <entry file="file://$PROJECT_DIR$/src/aiproj/checkers/game/player/AIPlayer.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+              <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -38,24 +46,38 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameTree.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/aiproj/checkers/game/player/ai/GameTree.java">
+      <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/aiproj/checkers/game/player/Player.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="22" column="67" selection-start-line="22" selection-start-column="67" selection-end-line="22" selection-end-column="67" />
+              <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameTree.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/aiproj/checkers/game/player/ai/GameTree.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.13103448">
+              <caret line="46" column="37" selection-start-line="46" selection-start-column="37" selection-end-line="46" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#3231#3232#0" expanded="true" />
+                <element signature="e#3279#3280#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CheckersBoard.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CheckersBoard.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/aiproj/checkers/game/CheckersBoard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6436782">
-              <caret line="348" column="62" selection-start-line="348" selection-start-column="62" selection-end-line="348" selection-end-column="62" />
-              <folding />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="761" column="71" selection-start-line="761" selection-start-column="71" selection-end-line="761" selection-end-column="71" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -128,9 +150,9 @@
         <option value="$PROJECT_DIR$/src/aiproj/checkers/graphics/EndScreen.java" />
         <option value="$PROJECT_DIR$/src/aiproj/checkers/graphics/CheckersPiece.java" />
         <option value="$PROJECT_DIR$/src/aiproj/checkers/game/player/AIPlayer.java" />
-        <option value="$PROJECT_DIR$/src/aiproj/checkers/game/player/ai/GameTree.java" />
         <option value="$PROJECT_DIR$/src/aiproj/checkers/graphics/Config.java" />
         <option value="$PROJECT_DIR$/src/aiproj/checkers/game/CheckersBoard.java" />
+        <option value="$PROJECT_DIR$/src/aiproj/checkers/game/player/ai/GameTree.java" />
       </list>
     </option>
   </component>
@@ -203,7 +225,7 @@
       <recent name="aiproj.checkers.game.player.ai" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.GameTree">
+  <component name="RunManager" selected="Application.CheckersDriver">
     <configuration default="false" name="CheckersDriver" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -786,8 +808,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.GameTree" />
-        <item index="1" class="java.lang.String" itemvalue="Application.CheckersDriver" />
+        <item index="0" class="java.lang.String" itemvalue="Application.CheckersDriver" />
+        <item index="1" class="java.lang.String" itemvalue="Application.GameTree" />
         <item index="2" class="java.lang.String" itemvalue="Application.Test" />
         <item index="3" class="java.lang.String" itemvalue="Application.CheckersPiece" />
         <item index="4" class="java.lang.String" itemvalue="Application.CheckersBoard" />
@@ -843,7 +865,9 @@
       <workItem from="1448320370256" duration="2376000" />
       <workItem from="1448380217404" duration="590000" />
       <workItem from="1448387839547" duration="3970000" />
-      <workItem from="1448902338682" duration="249000" />
+      <workItem from="1448902338682" duration="797000" />
+      <workItem from="1448905643397" duration="369000" />
+      <workItem from="1448912166265" duration="4090000" />
     </task>
     <task id="LOCAL-00001" summary="added kinging ability to checkers pieces, will be implemented in game shortly">
       <created>1447888400522</created>
@@ -887,11 +911,17 @@
       <option name="project" value="LOCAL" />
       <updated>1448902528647</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="won't make a move if the game is over">
+      <created>1448902606339</created>
+      <option name="number" value="00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1448902606339</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74613000" />
+    <option name="totallyTimeSpent" value="79620000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="5" y="26" width="1166" height="1017" extended-state="0" />
@@ -899,7 +929,6 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -916,6 +945,7 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -943,7 +973,8 @@
     <MESSAGE value="added a win screen" />
     <MESSAGE value="created a skeleton for the AIPlayer and the GameTree classes" />
     <MESSAGE value="updated to include a value of 1000000 for winning" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated to include a value of 1000000 for winning" />
+    <MESSAGE value="won't make a move if the game is over" />
+    <option name="LAST_COMMIT_MESSAGE" value="won't make a move if the game is over" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1263,19 +1294,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/aiproj/checkers/game/player/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="150" column="41" selection-start-line="150" selection-start-column="41" selection-end-line="150" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/aiproj/checkers/graphics/CheckersDriver.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1303,6 +1325,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/aiproj/checkers/graphics/Config.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="107" selection-start-line="11" selection-start-column="107" selection-end-line="11" selection-end-column="107" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/aiproj/checkers/game/player/AIPlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/aiproj/checkers/game/player/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/aiproj/checkers/game/CheckersBoard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="761" column="71" selection-start-line="761" selection-start-column="71" selection-end-line="761" selection-end-column="71" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/aiproj/checkers/graphics/CheckersPiece.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1314,41 +1374,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/aiproj/checkers/game/player/AIPlayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/aiproj/checkers/graphics/Config.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="107" selection-start-line="11" selection-start-column="107" selection-end-line="11" selection-end-column="107" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/aiproj/checkers/game/player/ai/GameTree.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="67" selection-start-line="22" selection-start-column="67" selection-end-line="22" selection-end-column="67" />
+        <state vertical-scroll-proportion="0.13103448">
+          <caret line="46" column="37" selection-start-line="46" selection-start-column="37" selection-end-line="46" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#3231#3232#0" expanded="true" />
+            <element signature="e#3279#3280#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/aiproj/checkers/game/CheckersBoard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6436782">
-          <caret line="348" column="62" selection-start-line="348" selection-start-column="62" selection-end-line="348" selection-end-column="62" />
-          <folding />
         </state>
       </provider>
     </entry>

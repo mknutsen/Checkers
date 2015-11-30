@@ -495,7 +495,7 @@ public class CheckersBoard {
     }
 
     @Override
-    public Object clone() throws CloneNotSupportedException {
+    public Object clone() {
         //new board
         CheckersBoard board = new CheckersBoard();
 
@@ -539,16 +539,35 @@ public class CheckersBoard {
     public final String getBoardString() {
         return movesMade;
     }
+
+    /**
+     * @param player1
+     *         player 1 or player2
+     * @return list of available moves
+     */
+    public final java.util.List<Move> getMovesForPlayer(boolean player1) {
+        java.util.List<Move> moves = new ArrayList<>();
+        ArrayList<CheckersPiece> myPieces = player1 ? getPlayer1Pieces() : getPlayer2Pieces();
+        if (!myPieces.isEmpty()) {
+            for (CheckersPiece piece : myPieces) {
+                CheckersBoard.MovesList moveList =
+                        CheckersBoard.getMoves(piece.getRow(), piece.getCol(), player1, piece.getIsKing());
+                removeImpossibleMoves(moveList).forEach(move -> moves.add(new Move(piece, move)));
+                getOneJumps(piece, moveList).forEach(move -> moves.add(new Move(piece, move)));
+            }
+        }
+        return moves;
+    }
     
     /**
      * class for a location on the board
      */
     public static final class Coordinate {
-        
+
         private int row;
-        
+
         private int col;
-        
+
         /**
          * @param row
          *         row of the location
@@ -559,14 +578,14 @@ public class CheckersBoard {
             this.setRow(row);
             this.setCol(col);
         }
-        
+
         /**
          * @return the row
          */
         public int getRow() {
             return row;
         }
-        
+
         /**
          * @param row
          *         sets the row
@@ -574,14 +593,14 @@ public class CheckersBoard {
         public void setRow(int row) {
             this.row = row;
         }
-        
+
         /**
          * @return the col
          */
         public int getCol() {
             return col;
         }
-        
+
         /**
          * @param col
          *         sets the col
@@ -589,17 +608,17 @@ public class CheckersBoard {
         public void setCol(int col) {
             this.col = col;
         }
-        
+
         @Override
         public int hashCode() {
             return row * 10 + col;
         }
-        
+
         @Override
         protected Object clone() {
             return new Coordinate(row, col);
         }
-        
+
         @Override
         public boolean equals(final Object obj) {
             if (obj instanceof Coordinate) {
@@ -608,7 +627,7 @@ public class CheckersBoard {
             }
             return false;
         }
-        
+
         /**
          * @return a string representing the location
          */
@@ -621,9 +640,9 @@ public class CheckersBoard {
      * a modified arraylist that only accepts coordinates that are in the boards range.
      */
     public static class MovesList implements Iterable<Coordinate> {
-        
+
         private ArrayList<Coordinate> list = new ArrayList<>();
-        
+
         /**
          * creates new coordiante at x,y and adds it
          *
@@ -637,7 +656,7 @@ public class CheckersBoard {
                 list.add(new Coordinate(x, y));
             }
         }
-        
+
         /**
          * adds coordiante to list
          *
@@ -647,35 +666,35 @@ public class CheckersBoard {
         public final void add(Coordinate coordinate) {
             this.add(coordinate.row, coordinate.col);
         }
-        
+
         @Override
         public Iterator<Coordinate> iterator() {
             return new Iterator<Coordinate>() {
-                
+
                 private int counter = 0;
-                
+
                 @Override
                 public boolean hasNext() {
                     return counter < list.size();
                 }
-                
+
                 @Override
                 public Coordinate next() {
                     return list.get(counter++);
                 }
             };
         }
-        
+
         @Override
         public void forEach(final Consumer<? super Coordinate> action) {
             list.forEach(item -> action.accept(item));
         }
-        
+
         @Override
         public Spliterator<Coordinate> spliterator() {
             return null;
         }
-        
+
         /**
          * @param cell
          *         checks if the list contains the coordinate cell
@@ -690,22 +709,22 @@ public class CheckersBoard {
             }
             return false;
         }
-        
+
         @Override
         public final String toString() {
             return list.toString();
         }
     }
-    
+
     /**
      * a move contains a piece to be moved and a cell to move the piece to
      */
     public static final class Move {
-        
+
         private CheckersPiece piece;
-        
+
         private Coordinate move;
-        
+
         /**
          * @param piece
          *         piece to move
@@ -713,21 +732,47 @@ public class CheckersBoard {
          *         cell to move it to
          */
         public Move(final CheckersPiece piece, final Coordinate move) {
-            
+
             this.piece = piece;
             this.move = move;
         }
-        
+
         public CheckersPiece getPiece() {
             return piece;
         }
-        
+
         public Coordinate getEndCell() {
             return move;
         }
-        
+
+        @Override
+        public boolean equals(final Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (!(o instanceof Move)) {
+                return false;
+            }
+
+            final Move move1 = (Move) o;
+
+            if (getPiece() != null ? !getPiece().equals(move1.getPiece()) : move1.getPiece() != null) {
+                return false;
+            }
+            return !(move != null ? !move.equals(move1.move) : move1.move != null);
+
+        }
+
+        @Override
+        public int hashCode() {
+            int result = getPiece() != null ? getPiece().hashCode() : 0;
+            result = 31 * result + (move != null ? move.hashCode() : 0);
+            return result;
+        }
+
         public final String toString() {
             return piece + " to " + getEndCell();
+
         }
     }
 }
