@@ -94,7 +94,6 @@ public class GameTree {
                 }
             }
         }
-        System.err.println("MAX: " + max);
         if (Config.DEBUG) {
             System.out.println("Move to use: " + max.moveUsed);
         }
@@ -136,11 +135,9 @@ public class GameTree {
                         }
                     }
                 }
-                System.err.println("updated score: " + node.score);
             }
         } else {
             node.score = node.board.score();
-            System.err.println("REAL SCORE " + node.score);
         }
     }
     
