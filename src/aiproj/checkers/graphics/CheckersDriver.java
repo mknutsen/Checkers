@@ -10,7 +10,7 @@ import mknutsen.graphicslibrary.GraphicsDriver;
 public class CheckersDriver {
 
     public static void main(String[] args) {
-        new GraphicsDriver(Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT,
+        new GraphicsDriver(Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT, new StartScreen(),
                 new GameComponent(new MousePlayer(), new AIPlayer()), new EndScreen());
     }
 }

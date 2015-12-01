@@ -41,4 +41,8 @@ public class AIPlayer extends Player {
         }
         return tree.bestMove();
     }
+
+    public boolean isThinking() {
+        return tree.isThinking();
+    }
 }

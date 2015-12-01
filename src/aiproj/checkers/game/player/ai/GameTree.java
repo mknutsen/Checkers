@@ -59,6 +59,7 @@ public class GameTree {
         for (Node node : root.nodeList) {
             if (node.moveUsed.equals(move)) {
                 root = node;
+                populate(Config.AI_DEPTH, root);
                 return;
             }
         }

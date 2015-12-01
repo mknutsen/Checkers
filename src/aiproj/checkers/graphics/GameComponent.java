@@ -1,6 +1,7 @@
 package aiproj.checkers.graphics;
 
 import aiproj.checkers.game.CheckersBoard;
+import aiproj.checkers.game.player.AIPlayer;
 import aiproj.checkers.game.player.Player;
 import mknutsen.graphicslibrary.GraphicsComponent;
 
@@ -15,6 +16,10 @@ import java.awt.event.MouseMotionListener;
 public class GameComponent extends GraphicsComponent {
 
     private CheckersBoard board;
+
+    private AIPlayer aiPlayer1, aiPlayer2;
+
+    private boolean thinking;
 
     /**
      * Default constructor initializes the board and the players and the mouse listener.
@@ -39,34 +44,44 @@ public class GameComponent extends GraphicsComponent {
         player1.setRepaintCallback(callback);
         player2.setRepaintCallback(callback);
 
-        //set up switching turns
-        board.setCallback(new TurnCallback() {
+        //setup ai players so it can track the thinking
+        if (player1 instanceof AIPlayer) {
+            aiPlayer1 = (AIPlayer) player1;
+        }
+        if (player2 instanceof AIPlayer) {
+            aiPlayer2 = (AIPlayer) player2;
 
-            @Override
-            public void nextTurn(final boolean isPlayer1Turn) {
-                CheckersBoard.Move move;
-                if (Config.DEBUG) {
-                    System.out.println(board);
-                }
-                if (isPlayer1Turn) {
-                    move = player1.triggerTurn();
-                } else {
-                    move = player2.triggerTurn();
-                }
-                // if the thing is a computer itll spit out a move to make, make the move
-                if (move != null) {
+        }
+        //set up switching turns
+        {
+            board.setCallback(new TurnCallback() {
+
+                @Override
+                public void nextTurn(final boolean isPlayer1Turn) {
+                    CheckersBoard.Move move;
                     if (Config.DEBUG) {
-                        System.out.println("making this move: " + move);
+                        System.out.println(board);
                     }
-                    boolean moveMade =
-                            board.makeMove(board.getPiece(move.getPiece().getRow(), move.getPiece().getCol()),
-                                    move.getEndCell());
-                    if (Config.DEBUG) {
-                        System.out.println("move made was successful: " + move + " " + moveMade);
+                    if (isPlayer1Turn) {
+                        move = player1.triggerTurn();
+                    } else {
+                        move = player2.triggerTurn();
+                    }
+                    // if the thing is a computer itll spit out a move to make, make the move
+                    if (move != null) {
+                        if (Config.DEBUG) {
+                            System.out.println("making this move: " + move);
+                        }
+                        boolean moveMade =
+                                board.makeMove(board.getPiece(move.getPiece().getRow(), move.getPiece().getCol()),
+                                        move.getEndCell());
+                        if (Config.DEBUG) {
+                            System.out.println("move made was successful: " + move + " " + moveMade);
+                        }
                     }
                 }
-            }
-        });
+            });
+        }
         //add the appropriate listeners to player1
         if (player1 instanceof MouseListener) {
             addMouseListener((MouseListener) player1);
@@ -92,9 +107,7 @@ public class GameComponent extends GraphicsComponent {
 
     @Override
     public void paint(final Graphics g) {
-        //        g.setColor(new Color((int) (Math.random() * 255), (int) (Math.random() * 255), (int) (Math.random()
-        // * 255)));
-        //        g.fillRect(0, 0, Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT);
+        g.setFont(new Font("Ariel", Font.BOLD, 60));
         g.drawImage(Config.backgroundImage, 0, 0, Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT, null);
         board.draw(g);
         //        System.out.println(board);
@@ -103,7 +116,13 @@ public class GameComponent extends GraphicsComponent {
         if (win != 0) {
             triggerCallback(win, board);
         }
+        if ((aiPlayer1 != null && aiPlayer1.isThinking()) || (aiPlayer2 != null && aiPlayer2.isThinking()) ||
+                thinking) {
 
+            g.setColor(
+                    new Color((int) (Math.random() * 255), (int) (Math.random() * 255), (int) (Math.random() * 255)));
+            g.drawString("Thinking...", 20, 100);
+        }
         try {
             Thread.sleep(10);
         } catch (InterruptedException e) {
