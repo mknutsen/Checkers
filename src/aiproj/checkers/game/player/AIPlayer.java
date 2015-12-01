@@ -23,6 +23,8 @@ public class AIPlayer extends Player {
 
     @Override
     public CheckersBoard.Move makeTurn(final List<CheckersBoard.Move> availableMoves) {
+        while (tree.isThinking()) {
+        }
         if (Config.DEBUG) {
             System.out.println("time to start the AI");
         }
@@ -33,7 +35,7 @@ public class AIPlayer extends Player {
                 if (Config.DEBUG) {
                     System.out.println("Game string: " + gameString);
                 }
-                gameString = gameString.substring(gameString.indexOf("\n") + 2);
+                gameString = gameString.substring(gameString.indexOf("\n") + 1);
             }
             tree.intakeLastMove(gameString);
         }

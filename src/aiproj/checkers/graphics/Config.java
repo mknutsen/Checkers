@@ -19,15 +19,17 @@ public final class Config {
     
     public static final int WINDOW_WIDTH = 750, WINDOW_HEIGHT = 750;
     
-    public static final int KING_WORTH = 1;
+    public static final int KING_WORTH = 5;
     
     public static final BufferedImage backgroundImage;
     
     public static final int WINNING_VALUE = 1000000;
     
-    public static final int AI_DEPTH = 5;
-
-    public static final boolean DEBUG = false;
+    public static final int AI_DEPTH = 4;
+    
+    public static final boolean DEBUG = true;
+    
+    public static final int PIECE_WORTH = 1;
     
     static {
         BufferedImage backgroundImage1;
