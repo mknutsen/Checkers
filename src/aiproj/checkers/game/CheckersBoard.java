@@ -80,7 +80,9 @@ public class CheckersBoard {
     public static void main(String[] args) {
         CheckersBoard board = new CheckersBoard();
         board.newGame();
-        System.out.println(board);
+        if (Config.DEBUG) {
+            System.out.println(board);
+        }
         
     }
     
@@ -338,29 +340,36 @@ public class CheckersBoard {
      */
     public final boolean makeMove(CheckersPiece movingPiece, final Coordinate endCell) {
         if (winner != 0) {
-            System.out.println("the game is over");
+            if (Config.DEBUG) {
+                System.out.println("the game is over");
+            }
             return false;
         }
         movingPiece = getPiece(movingPiece.getRow(), movingPiece.getCol());
-        System.out.println(movingPiece + " to  " + endCell);
+        if (Config.DEBUG) {
+            System.out.println(movingPiece + " to  " + endCell);
+        }
         if (movingPiece.getIsPlayer1() != player1) {
             return false;
         }
         MovesList availableMoves = getMoves(movingPiece.getRow(), movingPiece.getCol(), movingPiece.getIsPlayer1(),
                 movingPiece.getIsKing());
         if (removeImpossibleMoves(availableMoves).contains(endCell)) {
+            movesMade += movingPiece.toString() + " to " + endCell.toString() + "\n";
             checkersBoard[movingPiece.getRow()][movingPiece.getCol()] = null;
             movingPiece.setCol(endCell.col);
             movingPiece.setRow(endCell.row);
             checkersBoard[endCell.getRow()][endCell.getCol()] = movingPiece;
             checkIfPieceShouldBeKing(endCell.getRow(), endCell.getCol());
-            movesMade += movingPiece.toString() + " to " + endCell.toString() + "\n";
             nextTurn();
             return true;
         } else if (getOneJumps(movingPiece, availableMoves).contains(endCell)) {
             final int newCol = movingPiece.getCol() + (endCell.getCol() - movingPiece.getCol()) / 2;
             final int newRow = movingPiece.getRow() + (endCell.getRow() - movingPiece.getRow()) / 2;
-            
+
+            movesMade +=
+                    movingPiece.toString() + " to " + endCell.toString() + " taking " + newRow + ", " + newCol + "\n";
+
             deletePiece(new Coordinate(newRow, newCol));
             
             checkersBoard[movingPiece.getRow()][movingPiece.getCol()] = null;
@@ -368,8 +377,6 @@ public class CheckersBoard {
             movingPiece.setRow(endCell.row);
             checkersBoard[endCell.getRow()][endCell.getCol()] = movingPiece;
             checkIfPieceShouldBeKing(endCell.getRow(), endCell.getCol());
-            movesMade +=
-                    movingPiece.toString() + " to " + endCell.toString() + " taking " + newRow + ", " + newCol + "\n";
             nextTurn();
             return true;
         }
@@ -402,14 +409,20 @@ public class CheckersBoard {
                 final CheckersPiece newPiece;
                 try {
                     newPiece = getPiece(newRow, newCol);
-                    System.out.println(newRow + ", " + newCol);
+                    if (Config.DEBUG) {
+                        System.out.println(newRow + ", " + newCol);
+                    }
                     if (newPiece == null) {
                         newList.add(newRow, newCol);
                     } else {
-                        System.out.println("THERES SOMETHING THERE: " + newPiece);
+                        if (Config.DEBUG) {
+                            System.out.println("THERES SOMETHING THERE: " + newPiece);
+                        }
                     }
                 } catch (IllegalArgumentException e) {
-                    System.err.println(newRow + ", " + newCol + " tried to jump there");
+                    if (Config.DEBUG) {
+                        System.err.println(newRow + ", " + newCol + " tried to jump there");
+                    }
                 }
             }
         }
@@ -441,7 +454,9 @@ public class CheckersBoard {
     
     private boolean deletePiece(final Coordinate toDelete) {
         CheckersPiece tempPiece = checkersBoard[toDelete.row][toDelete.col];
-        System.out.println("to delete at " + tempPiece);
+        if (Config.DEBUG) {
+            System.out.println("to delete at " + tempPiece);
+        }
         if (tempPiece == null) {
             return false;
         }
@@ -518,6 +533,8 @@ public class CheckersBoard {
         //board callback being null might be dirty
         board.callback = null;
 
+        board.movesMade = movesMade;
+
         return board;
     }
     
@@ -537,6 +554,9 @@ public class CheckersBoard {
     }
 
     public final String getBoardString() {
+        if (Config.DEBUG) {
+            System.out.println("MOVE MADE " + movesMade);
+        }
         return movesMade;
     }
 
@@ -701,7 +721,9 @@ public class CheckersBoard {
          * @return true if it contains it
          */
         public final boolean contains(final Coordinate cell) {
-            System.out.println("why tf this shit null: " + cell);
+            if (Config.DEBUG) {
+                System.out.println("why tf this shit null: " + cell);
+            }
             for (Coordinate loc : list) {
                 if (loc.getRow() == cell.getRow() && loc.getCol() == cell.getCol()) {
                     return true;

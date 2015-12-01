@@ -25,7 +25,9 @@ public final class Config {
     
     public static final int WINNING_VALUE = 1000000;
     
-    public static final int AI_DEPTH = 3;
+    public static final int AI_DEPTH = 5;
+
+    public static final boolean DEBUG = false;
     
     static {
         BufferedImage backgroundImage1;

@@ -33,7 +33,9 @@ public class GameTree {
                 new CheckersBoard.Coordinate(Integer.parseInt(moveArray[2]), Integer.parseInt(moveArray[3]));
         CheckersBoard.Coordinate moveTo =
                 new CheckersBoard.Coordinate(Integer.parseInt(moveArray[5]), Integer.parseInt(moveArray[6]));
-        System.out.println("received last move: " + moveFrom + " " + moveTo);
+        if (Config.DEBUG) {
+            System.out.println("received last move: " + moveFrom + " " + moveTo);
+        }
 
         //update the tree
         CheckersPiece movingPiece = root.board.getPiece(moveFrom);
@@ -52,19 +54,27 @@ public class GameTree {
 
         root = node;
 
-
+        populate(Config.AI_DEPTH, root);
     }
 
     /**
      * @return the move the computer should make
      */
     public CheckersBoard.Move bestMove() {
+        if (root.nodeList.isEmpty()) {
+            return null;
+        }
         Node max = root.nodeList.get(0);
         for (Node node : root.nodeList) {
             if (max.score < node.score) {
                 max = node;
             }
         }
+        if (Config.DEBUG) {
+            System.out.println("Move to use: " + max.moveUsed);
+        }
+        root = max;
+        populate(Config.AI_DEPTH, root);
         return max.moveUsed;
     }
 
@@ -75,15 +85,20 @@ public class GameTree {
      *         node being looked at right now
      */
     public final void populate(int layersDeep, Node node) {
+        if (Config.DEBUG) {
+            System.out.println("starting with " + node + " and have " + layersDeep + " left");
+        }
         if (node.board.checkWin() == 0 && layersDeep != 0) {
             if (node.nodeList.isEmpty()) {
                 for (CheckersBoard.Move move : node.board.getMovesForPlayer(node.board.isPlayer1())) {
                     CheckersBoard board = (CheckersBoard) node.board.clone();
                     board.makeMove(move.getPiece(), move.getEndCell());
 
-                    int score = board.score();
+                    Node newNode = new Node(board, move);
+                    node.nodeList.add(newNode);
+                    populate(layersDeep - 1, newNode);
 
-                    node.nodeList.add(new Node(board));
+                    int score = board.score();
 
                     if (node.board.isPlayer1()) {
                         if (node.score < score) {
@@ -96,7 +111,6 @@ public class GameTree {
                     }
                 }
             }
-            populate(layersDeep - 1, node);
         } else {
             node.score = node.board.score();
         }
@@ -122,6 +136,10 @@ public class GameTree {
             moveUsed = move;
             score = board.isPlayer1() ? Integer.MIN_VALUE : Integer.MAX_VALUE;
 
+        }
+
+        public final String toString() {
+            return moveUsed == null ? "no move" : moveUsed.toString();
         }
     }
 }

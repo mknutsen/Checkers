@@ -2,10 +2,10 @@ package aiproj.checkers.game.player;
 
 import aiproj.checkers.game.CheckersBoard;
 import aiproj.checkers.graphics.CheckersPiece;
+import aiproj.checkers.graphics.Config;
 import aiproj.checkers.graphics.GameComponent;
 
-import java.util.ArrayList;
-import java.util.Hashtable;
+import java.util.List;
 
 /**
  * Player gives access to the components necessary to play without giving player the ability to mess with the game.
@@ -19,21 +19,6 @@ public abstract class Player {
     private CheckersPiece hover = null;
 
     private GameComponent.RepaintCallback repaintCallback;
-
-    /**
-     * @param board
-     *         board to get pieces from
-     * @param player1
-     *         player 1 or player 2
-     * @return that players pieces
-     */
-    public static ArrayList<CheckersPiece> getMyPieces(CheckersBoard board, boolean player1) {
-        if (player1) {
-            return board.getPlayer1Pieces();
-        } else {
-            return board.getPlayer2Pieces();
-        }
-    }
 
     @Override
     public final int hashCode() {
@@ -58,24 +43,8 @@ public abstract class Player {
     /**
      * @return the moves the player can make
      */
-    public final Hashtable<CheckersPiece, ArrayList<CheckersBoard.Coordinate>> getAvailableMoves() {
-        Hashtable<CheckersPiece, ArrayList<CheckersBoard.Coordinate>> movesTable = new Hashtable<>();
-        CheckersBoard game = getGame();
-        ArrayList<CheckersPiece> myPieces = getMyPieces(game, player1);
-        if (!myPieces.isEmpty()) {
-            for (CheckersPiece piece : myPieces) {
-                ArrayList<CheckersBoard.Coordinate> moves = new ArrayList<>();
-                CheckersBoard.MovesList moveList =
-                        CheckersBoard.getMoves(piece.getRow(), piece.getCol(), player1, piece.getIsKing());
-                game.removeImpossibleMoves(moveList).forEach(move -> moves.add(move));
-                game.getOneJumps(piece, moveList).forEach(move -> moves.add(move));
-                if (!moves.isEmpty()) {
-                    movesTable.put(piece, moves);
-                }
-            }
-        }
-        return movesTable;
-
+    public final List<CheckersBoard.Move> getAvailableMoves() {
+        return getGame().getMovesForPlayer(player1);
     }
 
     /**
@@ -95,7 +64,13 @@ public abstract class Player {
     public final void setGame(CheckersBoard game, boolean player1) {
         this.game = game;
         this.player1 = player1;
+        processGame();
     }
+
+    /**
+     * called when game is set.
+     */
+    protected abstract void processGame();
 
     /**
      * gets called when its your turn
@@ -104,7 +79,7 @@ public abstract class Player {
      * call player.makeMove when you're ready.
      */
     public final CheckersBoard.Move triggerTurn() {
-        Hashtable<CheckersPiece, ArrayList<CheckersBoard.Coordinate>> availableMoves = getAvailableMoves();
+        List<CheckersBoard.Move> availableMoves = getAvailableMoves();
         if (availableMoves.isEmpty()) {
             game.declareWinner(!getIsPlayer1());
             return null;
@@ -136,7 +111,10 @@ public abstract class Player {
      * @return true if sucessful
      */
     public boolean makeMove(final CheckersPiece piece, final CheckersBoard.Coordinate endCell) {
-        System.out.println("move: " + piece + " to " + endCell);
+        if (Config.DEBUG) {
+            System.out.println("move: " + piece + " to " + endCell);
+            System.out.println("null? " + (game == null));
+        }
         boolean move = game.makeMove(game.getPiece(piece.getRow(), piece.getCol()), endCell);
         repaintCallback.repaint();
         return move;
@@ -195,6 +173,5 @@ public abstract class Player {
      *         the moves you can make in a hashtable <piece, list of moves>
      * @return the move to make, or null. if you return null, call makeMove when you have a move to make.
      */
-    public abstract CheckersBoard.Move makeTurn(
-            final Hashtable<CheckersPiece, ArrayList<CheckersBoard.Coordinate>> availableMoves);
+    public abstract CheckersBoard.Move makeTurn(final List<CheckersBoard.Move> availableMoves);
 }

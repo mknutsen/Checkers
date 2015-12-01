@@ -14,9 +14,6 @@ import java.awt.event.MouseMotionListener;
  */
 public class GameComponent extends GraphicsComponent {
 
-
-    int i = 0;
-
     private CheckersBoard board;
 
     /**
@@ -48,7 +45,9 @@ public class GameComponent extends GraphicsComponent {
             @Override
             public void nextTurn(final boolean isPlayer1Turn) {
                 CheckersBoard.Move move;
-                System.out.println(board);
+                if (Config.DEBUG) {
+                    System.out.println(board);
+                }
                 if (isPlayer1Turn) {
                     move = player1.triggerTurn();
                 } else {
@@ -56,11 +55,15 @@ public class GameComponent extends GraphicsComponent {
                 }
                 // if the thing is a computer itll spit out a move to make, make the move
                 if (move != null) {
-                    System.out.println("making this move: " + move);
+                    if (Config.DEBUG) {
+                        System.out.println("making this move: " + move);
+                    }
                     boolean moveMade =
                             board.makeMove(board.getPiece(move.getPiece().getRow(), move.getPiece().getCol()),
                                     move.getEndCell());
-                    System.out.println("move made was successful: " + move + " " + moveMade);
+                    if (Config.DEBUG) {
+                        System.out.println("move made was successful: " + move + " " + moveMade);
+                    }
                 }
             }
         });

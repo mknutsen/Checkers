@@ -6,8 +6,7 @@ import aiproj.checkers.graphics.CheckersPiece;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.util.ArrayList;
-import java.util.Hashtable;
+import java.util.List;
 
 /**
  * Player controlled by a mouse
@@ -17,6 +16,11 @@ public class MousePlayer extends Player implements MouseListener, MouseMotionLis
 
     @Override
     public void mouseClicked(final MouseEvent e) {
+    }
+
+    @Override
+    protected void processGame() {
+
     }
 
     @Override
@@ -59,7 +63,7 @@ public class MousePlayer extends Player implements MouseListener, MouseMotionLis
 
     @Override
     public CheckersBoard.Move makeTurn(
-            final Hashtable<CheckersPiece, ArrayList<CheckersBoard.Coordinate>> availableMoves) {
+            final List<CheckersBoard.Move> availableMoves) {
         return null;
     }
 }
