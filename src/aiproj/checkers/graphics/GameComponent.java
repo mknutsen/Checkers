@@ -133,7 +133,6 @@ public class GameComponent extends GraphicsComponent {
 
     @Override
     public void takeParameters(final Object[] obj) {
-
     }
 
     public static abstract class TurnCallback {

@@ -27,7 +27,7 @@ public final class Config {
     
     public static final int AI_DEPTH = 5;
     
-    public static final boolean DEBUG = true;
+    public static boolean DEBUG = false;
     
     public static final int PIECE_WORTH = 1;
     
