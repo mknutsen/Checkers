@@ -113,13 +113,7 @@ public class CheckersPiece extends CircleGraphicObject {
      */
     public final void setCol(int col) {
         this.col = col;
-        if (Config.DEBUG) {
-            System.out.println("old col! " + getY());
-        }
         setY(Config.ROW_HEIGHT * col + Config.Y_OFFSET);
-        if (Config.DEBUG) {
-            System.out.println("new col! " + getY());
-        }
     }
 
     /**

@@ -32,9 +32,6 @@ public class AIPlayer extends Player {
         String gameString = board.getBoardString();
         if (gameString != null && gameString.indexOf("\n") > 0) {
             while (gameString.indexOf("\n") != gameString.lastIndexOf("\n")) {
-                if (Config.DEBUG) {
-                    System.out.println("Game string: " + gameString);
-                }
                 gameString = gameString.substring(gameString.indexOf("\n") + 1);
             }
             tree.intakeLastMove(gameString);

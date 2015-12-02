@@ -110,9 +110,6 @@ public class GameTree {
      *         node being looked at right now
      */
     public final void populate(int layersDeep, Node node) {
-        if (Config.DEBUG) {
-            System.out.println("starting with " + node + " and have " + layersDeep + " left");
-        }
         if (node.board.checkWin() == 0 && layersDeep != 0) {
             if (node.nodeList.isEmpty()) {
                 for (CheckersBoard.Move move : node.board.getMovesForPlayer(node.board.isPlayer1())) {
@@ -139,6 +136,9 @@ public class GameTree {
             }
         } else {
             node.score = node.board.score();
+        }
+        if (Config.DEBUG) {
+            System.out.println("ending  with " + node + " and have " + layersDeep + " left");
         }
     }
     
