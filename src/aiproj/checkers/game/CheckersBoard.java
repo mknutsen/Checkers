@@ -143,13 +143,16 @@ public class CheckersBoard {
         for (CheckersPiece piece : player1Pieces) {
             player1Score += piece.getIsKing() ? Config.KING_WORTH : Config.PIECE_WORTH;
         }
-        player1Score /= getMovesForPlayer(true).size();
+        java.util.List<Move> moves = getMovesForPlayer(true);
+
+        player1Score /= (moves.size() == 0 ? 1 : moves.size());
 
         int player2Score = 0;
         for (CheckersPiece piece : player2Pieces) {
             player2Score += piece.getIsKing() ? Config.KING_WORTH : Config.PIECE_WORTH;
         }
-        player2Score /= getMovesForPlayer(false).size();
+        moves = getMovesForPlayer(false);
+        player2Score /= (moves.size() == 0 ? 1 : moves.size());
 
         return player1Score - player2Score;
     }
