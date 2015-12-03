@@ -19,9 +19,23 @@ public class StartScreen extends GraphicsComponent implements MouseListener {
 
     private static final BufferedImage debugOn, debugOff, backgroundImage, done;
 
+    private static BufferedImage[] a, b, c;
+
     static {
         BufferedImage debugOn1 = null, debugOff1 = null, backgroundImage1 = null, done1 = null;
+        a = new BufferedImage[2];
+        b = new BufferedImage[2];
+        c = new BufferedImage[2];
         try {
+            a[0] = ImageIO.read(CheckersPiece.class.getResourceAsStream("resource/aOn.png"));
+            a[1] = ImageIO.read(CheckersPiece.class.getResourceAsStream("resource/aOff.png"));
+
+            b[0] = ImageIO.read(CheckersPiece.class.getResourceAsStream("resource/bOn.png"));
+            b[1] = ImageIO.read(CheckersPiece.class.getResourceAsStream("resource/bOff.png"));
+
+            c[0] = ImageIO.read(CheckersPiece.class.getResourceAsStream("resource/cOn.png"));
+            c[1] = ImageIO.read(CheckersPiece.class.getResourceAsStream("resource/cOff.png"));
+
             debugOn1 = ImageIO.read(CheckersPiece.class.getResourceAsStream("resource/debugOn.png"));
             debugOff1 = ImageIO.read(CheckersPiece.class.getResourceAsStream("resource/debugOff.png"));
             backgroundImage1 = ImageIO.read(CheckersPiece.class.getResourceAsStream("resource/menuWelcome.png"));
@@ -37,18 +51,61 @@ public class StartScreen extends GraphicsComponent implements MouseListener {
 
     }
 
+    private Heuristic heuristic;
+
     private ArrayList<Button> buttons;
 
+    private ArrayList<DebugButton> radioButtons;
+
     public StartScreen() {
+        heuristic = Heuristic.A;
+
         buttons = new ArrayList<>();
-        buttons.add(new DebugButton(80, 400, 200, 100));
-        buttons.add(new Button(470, 400, 200, 100, done, new Button.ButtonCallback() {
+        radioButtons = new ArrayList<>();
+        final int heuristicY = 450;
+        final int doneDebugY = 300;
+        buttons.add(
+                new DebugButton(80, doneDebugY, 200, 100, debugOn, debugOff, Config.DEBUG, new Button.ButtonCallback() {
+
+                    @Override
+                    public void trigger() {
+                        Config.DEBUG = !Config.DEBUG;
+                    }
+                }));
+        buttons.add(new Button(470, doneDebugY, 200, 100, done, new Button.ButtonCallback() {
 
             @Override
             public void trigger() {
-                triggerCallback();
+                System.out.println(heuristic);
+                triggerCallback(heuristic);
             }
         }));
+
+        radioButtons.add(new DebugButton(50, heuristicY, 200, 100, a[0], a[1], true, new Button.ButtonCallback() {
+
+            @Override
+            public void trigger() {
+                heuristic = Heuristic.A;
+            }
+        }));
+        radioButtons.add(new DebugButton(Config.WINDOW_WIDTH / 2 - 100, heuristicY, 200, 100, b[0], b[1], false,
+                new Button.ButtonCallback() {
+
+                    @Override
+                    public void trigger() {
+                        heuristic = Heuristic.B;
+
+                    }
+                }));
+        radioButtons.add(new DebugButton(500, heuristicY, 200, 100, c[0], c[1], false, new Button.ButtonCallback() {
+
+            @Override
+            public void trigger() {
+                heuristic = Heuristic.C;
+
+            }
+        }));
+
         addMouseListener(this);
     }
 
@@ -61,6 +118,13 @@ public class StartScreen extends GraphicsComponent implements MouseListener {
     public void mouseClicked(final MouseEvent e) {
         buttons.forEach(button -> {
             if (button.isInside(e)) {
+                button.click();
+            }
+        });
+        radioButtons.forEach(button -> {
+            if (button.isInside(e)) {
+                radioButtons.forEach(button2 -> button2.unclick());
+                button.isInside(e);
                 button.click();
             }
         });
@@ -96,27 +160,52 @@ public class StartScreen extends GraphicsComponent implements MouseListener {
         g.setColor(new Color(128, 128, 128));
         GraphicsHelperFunctions.drawCenteredString(g, "Welcome to\nCheckers!", 100, Config.WINDOW_WIDTH);
         buttons.forEach(button -> button.draw(g));
+        radioButtons.forEach(radioButton -> radioButton.draw(g));
+    }
+
+    public static enum Heuristic {
+        A("A"), B("B"), C("C");
+
+        private final String letter;
+
+        Heuristic(String letter) {
+            this.letter = letter;
+        }
+
+        public String toString() {
+            return letter;
+        }
     }
 
     private class DebugButton extends Button {
 
 
-        public DebugButton(final int x, final int y, final int width, final int height) {
-            super(x, y, width, height, "", Config.DEBUG ? debugOn : debugOff);
+        private final BufferedImage onImage;
+
+        private BufferedImage offImage;
+
+        public DebugButton(final int x, final int y, final int width, final int height, BufferedImage onImage,
+                           BufferedImage offImage, boolean startingValue, ButtonCallback callback) {
+            super(x, y, width, height, startingValue ? onImage : offImage, callback);
+            this.offImage = offImage;
+            this.onImage = onImage;
         }
 
         @Override
         public boolean isInside(final int x, final int y) {
             boolean isInside = super.isInside(x, y);
             if (isInside) {
-                if (getImage() == debugOn) {
-                    setImage(debugOff);
+                if (getImage() == offImage) {
+                    setImage(onImage);
                 } else {
-                    setImage(debugOn);
+                    setImage(offImage);
                 }
-                Config.DEBUG = !Config.DEBUG;
             }
             return isInside;
+        }
+
+        public void unclick() {
+            setImage(offImage);
         }
     }
 }

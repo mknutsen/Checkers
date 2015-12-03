@@ -15,6 +15,10 @@ import java.awt.event.MouseMotionListener;
  */
 public class GameComponent extends GraphicsComponent {
 
+    private final Player player1;
+
+    private final Player player2;
+
     private CheckersBoard board;
 
     private AIPlayer aiPlayer1, aiPlayer2;
@@ -25,63 +29,8 @@ public class GameComponent extends GraphicsComponent {
      * Default constructor initializes the board and the players and the mouse listener.
      */
     public GameComponent(Player player1, Player player2) {
-        //instantiate the game
-        board = new CheckersBoard();
-        board.newGame();
-
-        //give it to the players
-        player1.setGame(board, true);
-        player2.setGame(board, false);
-
-        //give the players the ability to call repaint
-        RepaintCallback callback = new RepaintCallback() {
-
-            @Override
-            public void repaint() {
-                //                repaint();
-            }
-        };
-        player1.setRepaintCallback(callback);
-        player2.setRepaintCallback(callback);
-
-        //setup ai players so it can track the thinking
-        if (player1 instanceof AIPlayer) {
-            aiPlayer1 = (AIPlayer) player1;
-        }
-        if (player2 instanceof AIPlayer) {
-            aiPlayer2 = (AIPlayer) player2;
-
-        }
-        //set up switching turns
-        {
-            board.setCallback(new TurnCallback() {
-
-                @Override
-                public void nextTurn(final boolean isPlayer1Turn) {
-                    CheckersBoard.Move move;
-                    if (Config.DEBUG) {
-                        System.out.println(board);
-                    }
-                    if (isPlayer1Turn) {
-                        move = player1.triggerTurn();
-                    } else {
-                        move = player2.triggerTurn();
-                    }
-                    // if the thing is a computer itll spit out a move to make, make the move
-                    if (move != null) {
-                        if (Config.DEBUG) {
-                            System.out.println("making this move: " + move);
-                        }
-                        boolean moveMade =
-                                board.makeMove(board.getPiece(move.getPiece().getRow(), move.getPiece().getCol()),
-                                        move.getEndCell());
-                        if (Config.DEBUG) {
-                            System.out.println("move made was successful: " + move + " " + moveMade);
-                        }
-                    }
-                }
-            });
-        }
+        this.player1 = player1;
+        this.player2 = player2;
         //add the appropriate listeners to player1
         if (player1 instanceof MouseListener) {
             addMouseListener((MouseListener) player1);
@@ -133,6 +82,67 @@ public class GameComponent extends GraphicsComponent {
 
     @Override
     public void takeParameters(final Object[] obj) {
+        //get and cast the heuristic to use
+        StartScreen.Heuristic heuristic = (StartScreen.Heuristic) obj[0];
+        System.out.println(heuristic);
+        //instantiate the game
+        board = new CheckersBoard();
+        board.newGame(heuristic);
+
+        //give the players the ability to call repaint
+        RepaintCallback callback = new RepaintCallback() {
+
+            @Override
+            public void repaint() {
+                //                repaint();
+            }
+        };
+        player1.setRepaintCallback(callback);
+        player2.setRepaintCallback(callback);
+
+        //setup ai players so it can track the thinking
+        if (player1 instanceof AIPlayer) {
+            aiPlayer1 = (AIPlayer) player1;
+        }
+        if (player2 instanceof AIPlayer) {
+            aiPlayer2 = (AIPlayer) player2;
+
+        }
+
+        //give it to the players
+        player1.setGame(board, true);
+        player2.setGame(board, false);
+
+        //set up switching turns
+        {
+            board.setCallback(new TurnCallback() {
+
+                @Override
+                public void nextTurn(final boolean isPlayer1Turn) {
+                    CheckersBoard.Move move;
+                    if (Config.DEBUG) {
+                        System.out.println(board);
+                    }
+                    if (isPlayer1Turn) {
+                        move = player1.triggerTurn();
+                    } else {
+                        move = player2.triggerTurn();
+                    }
+                    // if the thing is a computer itll spit out a move to make, make the move
+                    if (move != null) {
+                        if (Config.DEBUG) {
+                            System.out.println("making this move: " + move);
+                        }
+                        boolean moveMade =
+                                board.makeMove(board.getPiece(move.getPiece().getRow(), move.getPiece().getCol()),
+                                        move.getEndCell());
+                        if (Config.DEBUG) {
+                            System.out.println("move made was successful: " + move + " " + moveMade);
+                        }
+                    }
+                }
+            });
+        }
     }
 
     public static abstract class TurnCallback {

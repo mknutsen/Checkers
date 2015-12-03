@@ -3,6 +3,7 @@ package aiproj.checkers.game;
 import aiproj.checkers.graphics.CheckersPiece;
 import aiproj.checkers.graphics.Config;
 import aiproj.checkers.graphics.GameComponent;
+import aiproj.checkers.graphics.StartScreen;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -28,6 +29,8 @@ public class CheckersBoard {
     private GameComponent.TurnCallback callback;
     
     private int winner;
+
+    private StartScreen.Heuristic heuristic;
     
     /**
      * gets moves available at that location given a color NOT including the board.
@@ -79,7 +82,7 @@ public class CheckersBoard {
     
     public static void main(String[] args) {
         CheckersBoard board = new CheckersBoard();
-        board.newGame();
+        board.newGame(StartScreen.Heuristic.A);
         if (Config.DEBUG) {
             System.out.println(board);
         }
@@ -106,8 +109,21 @@ public class CheckersBoard {
         
         return nextMoves;
     }
-    
+
+    /**
+     * @return the score using the appropriate heuristic method
+     */
     public final int score() {
+        if (StartScreen.Heuristic.A == heuristic) {
+            return scoreA();
+        } else if (StartScreen.Heuristic.B == heuristic) {
+            return scoreB();
+        } else {
+            return scoreC();
+        }
+    }
+
+    private final int scoreA() {
         int score = 0;
         if (winner != 0) {
             score = Config.WINNING_VALUE * winner;
@@ -121,7 +137,27 @@ public class CheckersBoard {
         }
         return score;
     }
-    
+
+    private int scoreB() {
+        int player1Score = 0;
+        for (CheckersPiece piece : player1Pieces) {
+            player1Score += piece.getIsKing() ? Config.KING_WORTH : Config.PIECE_WORTH;
+        }
+        player1Score /= getMovesForPlayer(true).size();
+
+        int player2Score = 0;
+        for (CheckersPiece piece : player2Pieces) {
+            player2Score += piece.getIsKing() ? Config.KING_WORTH : Config.PIECE_WORTH;
+        }
+        player2Score /= getMovesForPlayer(false).size();
+
+        return player1Score - player2Score;
+    }
+
+    private int scoreC() {
+        return scoreA() + getMovesForPlayer(true).size() - getMovesForPlayer(false).size();
+    }
+
     public final boolean isPlayer1() {
         return player1;
     }
@@ -269,8 +305,10 @@ public class CheckersBoard {
     
     /**
      * sets up board with new pieces
+     *
+     * @param heuristic
      */
-    public final void newGame() {
+    public final void newGame(final StartScreen.Heuristic heuristic) {
         player1Pieces = new ArrayList<>();
         player2Pieces = new ArrayList<>();
         
@@ -291,6 +329,7 @@ public class CheckersBoard {
                 
             }
         }
+        this.heuristic = heuristic;
     }
     
     /**
@@ -532,6 +571,8 @@ public class CheckersBoard {
         board.callback = null;
 
         board.movesMade = movesMade;
+
+        board.heuristic = heuristic;
 
         return board;
     }

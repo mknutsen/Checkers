@@ -42,4 +42,5 @@ public class AIPlayer extends Player {
     public boolean isThinking() {
         return tree.isThinking();
     }
+
 }

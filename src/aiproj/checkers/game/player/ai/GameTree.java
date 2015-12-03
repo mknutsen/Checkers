@@ -3,6 +3,7 @@ package aiproj.checkers.game.player.ai;
 import aiproj.checkers.game.CheckersBoard;
 import aiproj.checkers.graphics.CheckersPiece;
 import aiproj.checkers.graphics.Config;
+import aiproj.checkers.graphics.StartScreen;
 
 import java.util.ArrayList;
 
