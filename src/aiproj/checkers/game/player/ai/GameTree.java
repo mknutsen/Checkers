@@ -3,7 +3,6 @@ package aiproj.checkers.game.player.ai;
 import aiproj.checkers.game.CheckersBoard;
 import aiproj.checkers.graphics.CheckersPiece;
 import aiproj.checkers.graphics.Config;
-import aiproj.checkers.graphics.StartScreen;
 
 import java.util.ArrayList;
 
@@ -20,7 +19,7 @@ public class GameTree {
         root = new Node(game);
         Runnable populate = () -> {
             thinking = true;
-            populate(Config.AI_DEPTH, root);
+            populate(Config.AI_DEPTH, root, root.board.isPlayer1() ? Integer.MAX_VALUE : Integer.MIN_VALUE);
             System.out.println("were good fam");
             thinking = false;
         };
@@ -60,7 +59,7 @@ public class GameTree {
         for (Node node : root.nodeList) {
             if (node.moveUsed.equals(move)) {
                 root = node;
-                populate(Config.AI_DEPTH, root);
+                populate(Config.AI_DEPTH, root, root.board.isPlayer1() ? Integer.MAX_VALUE : Integer.MIN_VALUE);
                 return;
             }
         }
@@ -72,7 +71,7 @@ public class GameTree {
 
         root = node;
 
-        populate(Config.AI_DEPTH, root);
+        populate(Config.AI_DEPTH, root, root.board.isPlayer1() ? Integer.MAX_VALUE : Integer.MIN_VALUE);
     }
 
     /**
@@ -100,7 +99,7 @@ public class GameTree {
             System.out.println("Move to use: " + max.moveUsed);
         }
         root = max;
-        populate(Config.AI_DEPTH, root);
+        populate(Config.AI_DEPTH, root, root.board.isPlayer1() ? Integer.MAX_VALUE : Integer.MIN_VALUE);
         return max.moveUsed;
     }
 
@@ -110,7 +109,7 @@ public class GameTree {
      * @param node
      *         node being looked at right now
      */
-    public final void populate(int layersDeep, Node node) {
+    public final void populate(int layersDeep, Node node, int parentValue) {
         if (node.board.checkWin() == 0 && layersDeep != 0) {
             if (node.nodeList.isEmpty()) {
                 for (CheckersBoard.Move move : node.board.getMovesForPlayer(node.board.isPlayer1())) {
@@ -121,7 +120,12 @@ public class GameTree {
                     node.nodeList.add(newNode);
                 }
                 for (Node newNode : node.nodeList) {
-                    populate(layersDeep - 1, newNode);
+                    if ((!node.board.isPlayer1() && parentValue <= node.score) ||
+                            (node.board.isPlayer1() && parentValue >= node.score)) {
+                        populate(layersDeep - 1, newNode, node.score);
+                    } else if (Config.DEBUG) {
+                        System.out.println("PRUNED: " + node);
+                    }
 
 
                     if (node.board.isPlayer1()) {
