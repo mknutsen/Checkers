@@ -23,8 +23,8 @@ public class EndScreen extends GraphicsComponent implements MouseListener {
         g.setColor(Color.red);
         g.drawImage(Config.backgroundImage, 0, 0, Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT, null);
         board.draw(g);
-        System.out.println("game text: "+board.getBoardString());
-        g.drawString("Winner was: " + winner, 100, 100);
+        System.out.println("game text: " + board.getBoardString());
+        g.drawString("Winner was: " + (winner == -1 ? "AI" : "Human"), 100, 100);
     }
 
     @Override
