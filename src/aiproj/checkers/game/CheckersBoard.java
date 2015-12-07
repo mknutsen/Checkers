@@ -123,7 +123,7 @@ public class CheckersBoard {
         }
     }
 
-    private final int scoreA() {
+    public final int scoreA() {
         int score = 0;
         if (winner != 0) {
             score = Config.WINNING_VALUE * winner;
@@ -138,7 +138,7 @@ public class CheckersBoard {
         return score;
     }
 
-    private int scoreB() {
+    public int scoreB() {
         int player1Score = 0;
         for (CheckersPiece piece : player1Pieces) {
             player1Score += piece.getIsKing() ? Config.KING_WORTH : Config.PIECE_WORTH;
@@ -157,7 +157,7 @@ public class CheckersBoard {
         return player1Score - player2Score;
     }
 
-    private int scoreC() {
+    public int scoreC() {
         return scoreA() + getMovesForPlayer(true).size() - getMovesForPlayer(false).size();
     }
 
