@@ -3,6 +3,7 @@ package aiproj.checkers.game.player.ai;
 import aiproj.checkers.game.CheckersBoard;
 import aiproj.checkers.graphics.CheckersPiece;
 import aiproj.checkers.graphics.Config;
+import aiproj.checkers.graphics.StartScreen;
 
 import java.util.ArrayList;
 
@@ -10,22 +11,38 @@ import java.util.ArrayList;
  * Created by mknutsen on 11/24/15.
  */
 public class GameTree {
-
+    
     private Node root;
-
+    
     private boolean thinking;
 
-    public GameTree(final CheckersBoard game) {
+    private StartScreen.Heuristic heuristic;
+    
+    public GameTree(final CheckersBoard game, StartScreen.Heuristic heuristic) {
         root = new Node(game);
         Runnable populate = () -> {
             thinking = true;
             populate(Config.AI_DEPTH, root, root.board.isPlayer1() ? Integer.MAX_VALUE : Integer.MIN_VALUE);
             System.out.println("were good fam");
             thinking = false;
+            this.heuristic = heuristic;
+            
         };
         new Thread(populate).start();
     }
-
+    
+    private static int score(CheckersBoard board, StartScreen.Heuristic heuristic) {
+        if (heuristic == null) {
+            return board.score();
+        } else if (heuristic == StartScreen.Heuristic.A) {
+            return board.scoreA();
+        } else if (heuristic == StartScreen.Heuristic.B) {
+            return board.scoreB();
+        } else {
+            return board.scoreC();
+        }
+    }
+    
     /**
      * takes in a string representing the last move and makes the change to the set of boards in memory
      *
@@ -65,7 +82,7 @@ public class GameTree {
         }
         Node node = new Node((CheckersBoard) root.board.clone(), move);
         node.board.makeMove(move.getPiece(), move.getEndCell());
-        node.score = node.board.score();
+        node.score = score(node.board, heuristic);
 
         //garbage collection here if possible?
 
@@ -73,7 +90,7 @@ public class GameTree {
 
         populate(Config.AI_DEPTH, root, root.board.isPlayer1() ? Integer.MAX_VALUE : Integer.MIN_VALUE);
     }
-
+    
     /**
      * @return the move the computer should make
      */
@@ -102,7 +119,7 @@ public class GameTree {
         populate(Config.AI_DEPTH, root, root.board.isPlayer1() ? Integer.MAX_VALUE : Integer.MIN_VALUE);
         return max.moveUsed;
     }
-
+    
     /**
      * @param layersDeep
      *         number of layers to check (-1 will fully populate tree)
@@ -140,7 +157,7 @@ public class GameTree {
                 }
             }
         } else {
-            node.score = node.board.score();
+            node.score = score(node.board, heuristic);
         }
         if (Config.DEBUG) {
             System.out.println("ending  with " + node + " and have " + layersDeep + " left");
@@ -150,7 +167,7 @@ public class GameTree {
     public boolean isThinking() {
         return thinking;
     }
-    
+
     private class Node {
 
         final ArrayList<Node> nodeList;

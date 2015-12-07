@@ -114,7 +114,7 @@ public class CheckersBoard {
      * @return the score using the appropriate heuristic method
      */
     public final int score() {
-        if (StartScreen.Heuristic.A == heuristic) {
+        if (StartScreen.Heuristic.A == heuristic || heuristic == null) {
             return scoreA();
         } else if (StartScreen.Heuristic.B == heuristic) {
             return scoreB();

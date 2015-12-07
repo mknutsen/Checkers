@@ -3,6 +3,7 @@ package aiproj.checkers.game.player;
 import aiproj.checkers.game.CheckersBoard;
 import aiproj.checkers.game.player.ai.GameTree;
 import aiproj.checkers.graphics.Config;
+import aiproj.checkers.graphics.StartScreen;
 
 import java.util.List;
 
@@ -13,12 +14,19 @@ public class AIPlayer extends Player {
 
     private GameTree tree;
 
+    private StartScreen.Heuristic heuristic;
+
     public AIPlayer() {
+        this(null);
+    }
+
+    public AIPlayer(StartScreen.Heuristic heuristic){
+        this.heuristic = heuristic;
     }
 
     @Override
     protected void processGame() {
-        tree = new GameTree(getGame());
+        tree = new GameTree(getGame(), heuristic);
     }
 
     @Override

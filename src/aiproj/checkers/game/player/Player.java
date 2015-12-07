@@ -116,7 +116,9 @@ public abstract class Player {
             System.out.println("null? " + (game == null));
         }
         boolean move = game.makeMove(game.getPiece(piece.getRow(), piece.getCol()), endCell);
-        repaintCallback.repaint();
+        if (repaintCallback != null) {
+            repaintCallback.repaint();
+        }
         return move;
     }
 
