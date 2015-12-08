@@ -1,5 +1,6 @@
 aiproj.checkers.game
 aiproj.checkers.game.player
+aiproj.checkers.game.player.ai
 aiproj.checkers.graphics
 mknutsen.graphicslibrary
 mknutsen.graphicslibrary.graphicsobject
