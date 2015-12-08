@@ -8,7 +8,7 @@ import aiproj.checkers.graphics.StartScreen;
 import java.util.ArrayList;
 
 /**
- * Created by mknutsen on 11/24/15.
+ * MiniMax Tree with Alpha Beta Pruning
  */
 public class GameTree {
     
@@ -17,20 +17,33 @@ public class GameTree {
     private boolean thinking;
 
     private StartScreen.Heuristic heuristic;
-    
+
+    /**
+     * @param game
+     *         the game to build the tree out of
+     * @param heuristic
+     *         the hueristic to use to grade the game
+     */
     public GameTree(final CheckersBoard game, StartScreen.Heuristic heuristic) {
         root = new Node(game);
         Runnable populate = () -> {
             thinking = true;
             populate(Config.AI_DEPTH, root, root.board.isPlayer1() ? Integer.MAX_VALUE : Integer.MIN_VALUE);
-            System.out.println("were good fam");
+            System.out.println("Game Tree done building");
             thinking = false;
             this.heuristic = heuristic;
             
         };
         new Thread(populate).start();
     }
-    
+
+    /**
+     * @param board
+     *         board to score
+     * @param heuristic
+     *         heuristic to use
+     * @return score of that game
+     */
     private static int score(CheckersBoard board, StartScreen.Heuristic heuristic) {
         if (heuristic == null) {
             return board.score();
@@ -168,6 +181,9 @@ public class GameTree {
         return thinking;
     }
 
+    /**
+     * Node contains a board, the move used to get there, and the list of moves coming after.
+     */
     private class Node {
 
         final ArrayList<Node> nodeList;
@@ -178,10 +194,20 @@ public class GameTree {
 
         int score;
 
+        /**
+         * @param board
+         *         builds a node around the board
+         */
         Node(final CheckersBoard board) {
             this(board, null);
         }
 
+        /**
+         * @param board
+         *         board to live at node
+         * @param move
+         *         move used to get to this game state
+         */
         Node(final CheckersBoard board, CheckersBoard.Move move) {
             this.board = board;
             nodeList = new ArrayList<>();
@@ -190,6 +216,9 @@ public class GameTree {
 
         }
 
+        /**
+         * @return the move used to get there as the identifying feature.
+         */
         public final String toString() {
             return moveUsed == null ? "no move" : moveUsed.toString() + ", score " + score;
         }

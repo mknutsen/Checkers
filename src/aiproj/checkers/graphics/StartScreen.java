@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Created by mknutsen on 12/1/15.
+ * Screen to show to choose heuristic and turn debug on/off
  */
 public class StartScreen extends GraphicsComponent implements MouseListener {
 
@@ -21,6 +21,9 @@ public class StartScreen extends GraphicsComponent implements MouseListener {
 
     private static BufferedImage[] a, b, c;
 
+    /**
+     * load a bunch of pictures.
+     */
     static {
         BufferedImage debugOn1 = null, debugOff1 = null, backgroundImage1 = null, done1 = null;
         a = new BufferedImage[2];
@@ -55,17 +58,20 @@ public class StartScreen extends GraphicsComponent implements MouseListener {
 
     private ArrayList<Button> buttons;
 
-    private ArrayList<DebugButton> radioButtons;
+    private ArrayList<ToggleButton> toggleButtons;
 
+    /**
+     * sets up the buttons.
+     */
     public StartScreen() {
         heuristic = Heuristic.A;
 
         buttons = new ArrayList<>();
-        radioButtons = new ArrayList<>();
+        toggleButtons = new ArrayList<>();
         final int heuristicY = 450;
         final int doneDebugY = 300;
-        buttons.add(
-                new DebugButton(80, doneDebugY, 200, 100, debugOn, debugOff, Config.DEBUG, new Button.ButtonCallback() {
+        buttons.add(new ToggleButton(80, doneDebugY, 200, 100, debugOn, debugOff, Config.DEBUG,
+                new Button.ButtonCallback() {
 
                     @Override
                     public void trigger() {
@@ -81,14 +87,14 @@ public class StartScreen extends GraphicsComponent implements MouseListener {
             }
         }));
 
-        radioButtons.add(new DebugButton(50, heuristicY, 200, 100, a[0], a[1], true, new Button.ButtonCallback() {
+        toggleButtons.add(new ToggleButton(50, heuristicY, 200, 100, a[0], a[1], true, new Button.ButtonCallback() {
 
             @Override
             public void trigger() {
                 heuristic = Heuristic.A;
             }
         }));
-        radioButtons.add(new DebugButton(Config.WINDOW_WIDTH / 2 - 100, heuristicY, 200, 100, b[0], b[1], false,
+        toggleButtons.add(new ToggleButton(Config.WINDOW_WIDTH / 2 - 100, heuristicY, 200, 100, b[0], b[1], false,
                 new Button.ButtonCallback() {
 
                     @Override
@@ -97,7 +103,7 @@ public class StartScreen extends GraphicsComponent implements MouseListener {
 
                     }
                 }));
-        radioButtons.add(new DebugButton(500, heuristicY, 200, 100, c[0], c[1], false, new Button.ButtonCallback() {
+        toggleButtons.add(new ToggleButton(500, heuristicY, 200, 100, c[0], c[1], false, new Button.ButtonCallback() {
 
             @Override
             public void trigger() {
@@ -121,9 +127,9 @@ public class StartScreen extends GraphicsComponent implements MouseListener {
                 button.click();
             }
         });
-        radioButtons.forEach(button -> {
+        toggleButtons.forEach(button -> {
             if (button.isInside(e)) {
-                radioButtons.forEach(button2 -> button2.unclick());
+                toggleButtons.forEach(button2 -> button2.unclick());
                 button.isInside(e);
                 button.click();
             }
@@ -160,7 +166,7 @@ public class StartScreen extends GraphicsComponent implements MouseListener {
         g.setColor(new Color(128, 128, 128));
         GraphicsHelperFunctions.drawCenteredString(g, "Welcome to\nCheckers!", 100, Config.WINDOW_WIDTH);
         buttons.forEach(button -> button.draw(g));
-        radioButtons.forEach(radioButton -> radioButton.draw(g));
+        toggleButtons.forEach(radioButton -> radioButton.draw(g));
     }
 
     public static enum Heuristic {
@@ -177,15 +183,18 @@ public class StartScreen extends GraphicsComponent implements MouseListener {
         }
     }
 
-    private class DebugButton extends Button {
+    /**
+     * toggle button changes the image to show it being clicked or not clicked.
+     */
+    private class ToggleButton extends Button {
 
 
         private final BufferedImage onImage;
 
         private BufferedImage offImage;
 
-        public DebugButton(final int x, final int y, final int width, final int height, BufferedImage onImage,
-                           BufferedImage offImage, boolean startingValue, ButtonCallback callback) {
+        public ToggleButton(final int x, final int y, final int width, final int height, BufferedImage onImage,
+                            BufferedImage offImage, boolean startingValue, ButtonCallback callback) {
             super(x, y, width, height, startingValue ? onImage : offImage, callback);
             this.offImage = offImage;
             this.onImage = onImage;
@@ -204,6 +213,9 @@ public class StartScreen extends GraphicsComponent implements MouseListener {
             return isInside;
         }
 
+        /**
+         * sets the image to off.
+         */
         public void unclick() {
             setImage(offImage);
         }

@@ -8,7 +8,7 @@ import aiproj.checkers.graphics.StartScreen;
 import java.util.List;
 
 /**
- * Created by mknutsen on 11/24/15.
+ * Player that uses the GameTree to figure out what move to make.
  */
 public class AIPlayer extends Player {
 
@@ -16,11 +16,18 @@ public class AIPlayer extends Player {
 
     private StartScreen.Heuristic heuristic;
 
+    /**
+     * No heuristic demanded, just uses whichever the game has set to use.
+     */
     public AIPlayer() {
         this(null);
     }
 
-    public AIPlayer(StartScreen.Heuristic heuristic){
+    /**
+     * @param heuristic
+     *         heuristic to use for this AI
+     */
+    public AIPlayer(StartScreen.Heuristic heuristic) {
         this.heuristic = heuristic;
     }
 
@@ -36,6 +43,8 @@ public class AIPlayer extends Player {
         if (Config.DEBUG) {
             System.out.println("time to start the AI");
         }
+
+        //turns the board string into only the last move
         CheckersBoard board = getGame();
         String gameString = board.getBoardString();
         if (gameString != null && gameString.indexOf("\n") > 0) {
@@ -47,6 +56,9 @@ public class AIPlayer extends Player {
         return tree.bestMove();
     }
 
+    /**
+     * @return true if the gametree is in a thread trying to figure out what to do
+     */
     public boolean isThinking() {
         return tree.isThinking();
     }

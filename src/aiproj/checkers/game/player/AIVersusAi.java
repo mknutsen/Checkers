@@ -5,19 +5,29 @@ import aiproj.checkers.graphics.Config;
 import aiproj.checkers.graphics.StartScreen;
 
 /**
- * Created by mknutsen on 12/6/15.
+ * AI versus AI runs two AIs against eachother using whichever heuristic is specified at the top of the file
  */
 public class AIVersusAi {
     
-    private static StartScreen.Heuristic player1Heuristic = StartScreen.Heuristic.A;
-    
-    private static StartScreen.Heuristic player2Hueristic = StartScreen.Heuristic.B;
+    private static StartScreen.Heuristic player1Heuristic = StartScreen.Heuristic.B;
+
+    private static StartScreen.Heuristic player2Hueristic = StartScreen.Heuristic.A;
     
     public static void main(String[] args) {
         Config.DEBUG = false;
         System.out.println(playGame());
     }
-    
+
+    /**
+     * Runs two AIs against each other<br> <b>Multiple known issues:</b><br> <ol><li>There is some threading issue that
+     * causes the players not to finish being created. If it runs for a minute and hasn't printed any moves, quit it and
+     * run it again.</li><li>If the pieces end up far away from eachother, a real player would forfit. The AIs just run
+     * away from eachother. If you notice its just printing out the same number over and over again, call it quits.
+     * </li><li>If the player loses by not having any moves to make, it will throw a null pointer exception. Ignore
+     * that.</li></ol>
+     *
+     * @return who won
+     */
     public static int playGame() {
         CheckersBoard board = new CheckersBoard();
         board.newGame(null);
@@ -50,7 +60,7 @@ public class AIVersusAi {
                 while (gameString.indexOf("\n") != gameString.lastIndexOf("\n")) {
                     gameString = gameString.substring(gameString.indexOf("\n") + 1);
                 }
-                System.out.println("Move: "+gameString);
+                System.out.println("Move: " + gameString);
                 System.out.println(board);
             }
             if (board.isPlayer1()) {
